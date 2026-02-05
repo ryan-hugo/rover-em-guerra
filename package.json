@@ -1,0 +1,12 @@
+{
+    "name": "rover-meta-momento",
+    "private": true,
+    "type": "module",
+    "scripts": {
+        "build": "node scripts/parse-pdf.js",
+        "start": "npx serve public -l 10000"
+    },
+    "dependencies": {
+        "pdfjs-dist": "4.10.38"
+    }
+}

@@ -1,0 +1,7 @@
+services:
+  - type: web
+    name: rover-meta-momento
+    env: node
+    buildCommand: npm install && npm run build
+    startCommand: npm run start
+    autoDeploy: true

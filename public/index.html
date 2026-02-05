@@ -5,6 +5,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Rover em Guerra — Meta do Momento</title>
+
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link
@@ -14,8 +15,6 @@
     <style>
         :root {
             color-scheme: dark;
-
-            /* Futurista + minimal + guerra */
             --bg0: #040706;
             --bg1: #07110c;
             --panel: rgba(10, 16, 13, .70);
@@ -66,7 +65,6 @@
         }
 
         .wrap {
-            /* max-width: 1500px; */
             margin: 0 auto;
             padding: 18px 18px 26px
         }
@@ -77,7 +75,6 @@
             }
         }
 
-        /* Header futurista */
         .header {
             display: flex;
             align-items: center;
@@ -103,7 +100,6 @@
             min-width: 280px;
         }
 
-        /* logo slot */
         .brand .logo {
             width: 64px;
             height: 64px;
@@ -125,19 +121,12 @@
             display: block;
         }
 
-        .brand .logo.dragover {
-            outline: 2px dashed rgba(255, 196, 110, 0.7);
-            transform: translateY(-2px) scale(1.02);
-            transition: transform .12s ease, outline-color .12s ease;
-        }
-
         .brand .titleWrap {
             display: flex;
             flex-direction: column;
             gap: 6px;
         }
 
-        /* Main header title (emphasized) */
         .brand .title {
             display: block;
             font-weight: 950;
@@ -147,7 +136,6 @@
             text-transform: uppercase;
         }
 
-        /* Slogan right under the main title, smaller */
         .brand .slogan {
             color: var(--muted);
             font-size: 13px;
@@ -159,38 +147,6 @@
         .brand .subtitle {
             color: var(--muted);
             font-size: 13px;
-        }
-
-        .chip {
-            display: inline-flex;
-            align-items: center;
-            gap: 10px;
-            padding: 9px 12px;
-            border-radius: 999px;
-            border: 1px solid rgba(255, 196, 110, .30);
-            background: rgba(255, 196, 110, .06);
-            font-weight: 950;
-            letter-spacing: .6px;
-            text-transform: uppercase;
-            white-space: nowrap;
-        }
-
-        .chip small {
-            opacity: .75;
-            font-weight: 800;
-            letter-spacing: .7px;
-            text-transform: none;
-            font-family: Abel, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
-        }
-
-        .headSub {
-            color: var(--muted);
-            font-size: 13px;
-            line-height: 1.25;
-            white-space: nowrap;
-            overflow: hidden;
-            text-overflow: ellipsis;
-            max-width: 720px;
         }
 
         .headRight {
@@ -230,7 +186,6 @@
             font-style: normal;
         }
 
-        /* Buttons - creative / neon-tech style */
         .btn {
             width: auto;
             padding: 10px 14px;
@@ -247,7 +202,6 @@
             overflow: visible;
         }
 
-        /* header-specific button tweaks - creative accent */
         .header .btn {
             padding: 10px 14px;
             border-radius: 10px;
@@ -257,7 +211,6 @@
             box-shadow: none;
         }
 
-        /* hover: pop + neon glow */
         .header .btn:hover,
         .btn:hover {
             transform: translateY(-4px) scale(1.03);
@@ -277,7 +230,6 @@
             box-shadow: 0 8px 28px rgba(255, 180, 60, 0.12), 0 0 24px rgba(255, 160, 40, 0.06);
         }
 
-        /* TELÃO button explicit states (neon accent when active) */
         #btnTelao {
             background: linear-gradient(180deg, rgb(253, 204, 131), rgb(250, 176, 86));
             color: #eaf5ef;
@@ -299,22 +251,6 @@
             transform: translateY(-2px) scale(1.02);
         }
 
-        /* subtle icon spacing when used */
-        .btn .icon {
-            margin-right: 8px;
-            font-size: 14px;
-            vertical-align: middle;
-        }
-
-        .btn .icon svg {
-            display: inline-block;
-            vertical-align: middle;
-            width: 18px;
-            height: 18px;
-            color: inherit;
-        }
-
-        /* TELÃO icon animation */
         #btnTelao .icon {
             display: inline-flex;
             transition: transform .25s ease;
@@ -325,42 +261,6 @@
             transform: rotate(-8deg) scale(1.06);
         }
 
-        /* name filter styles */
-        .nameFilterWrap {
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            background: rgba(0, 0, 0, 0.22);
-            padding: 6px 8px;
-            border-radius: 10px;
-            border: 1px solid rgba(255, 255, 255, 0.04);
-        }
-
-        .nameFilterWrap input[type="search"] {
-            background: transparent;
-            border: none;
-            color: inherit;
-            padding: 6px 8px;
-            width: 220px;
-            outline: none;
-            font-size: 13px;
-        }
-
-        .nameFilterClear {
-            background: transparent;
-            border: none;
-            color: var(--muted);
-            font-weight: 900;
-            cursor: pointer;
-            padding: 4px 8px;
-            border-radius: 8px;
-        }
-
-        .nameFilterClear:hover {
-            color: #fff
-        }
-
-        /* hover effect on the icon to give feedback when text removed */
         #btnTelao:hover .icon svg {
             filter: drop-shadow(0 4px 10px rgba(255, 160, 40, 0.08));
             transition: transform .18s ease, filter .18s ease;
@@ -371,13 +271,11 @@
             background: linear-gradient(180deg, #ffdd9f, #ffb56a);
         }
 
-        /* accessibility: focus styles */
         #btnTelao:focus {
             outline: 3px solid rgba(255, 246, 209, 0.904);
             outline-offset: 3px;
         }
 
-        /* Tooltip inside header buttons (small floating label) */
         .btn .btnTooltip {
             position: absolute;
             top: -36px;
@@ -401,7 +299,6 @@
             transform: translateX(-50%) translateY(-10px) scale(1);
         }
 
-        /* sheen overlay */
         .header .btn {
             position: relative;
             overflow: hidden;
@@ -424,24 +321,11 @@
             transform: rotate(25deg) translateX(300%);
         }
 
-        /* pressed/active look */
         .header .btn:active {
             transform: translateY(0) scale(0.995);
             box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5) inset;
         }
 
-        /* a slightly different primary style with glow */
-        .btn.primary {
-            background: linear-gradient(180deg, rgb(253, 204, 131), rgb(250, 176, 86));
-            border-color: rgba(255, 255, 255, 0.28);
-            color: rgba(255, 255, 255, 0.98);
-        }
-
-        #btnTelao.primary {
-            box-shadow: 0 12px 30px rgba(255, 255, 255, 0.12);
-        }
-
-        /* Layout geral */
         .layout {
             display: grid;
             grid-template-columns: minmax(360px, 520px) 1fr;
@@ -453,10 +337,6 @@
         @media(max-width:1200px) {
             .layout {
                 grid-template-columns: 1fr
-            }
-
-            .headSub {
-                max-width: 420px
             }
         }
 
@@ -559,20 +439,6 @@
             padding: 10px 12px
         }
 
-        /* Config grid (Meta/PDF/Log) */
-        .configGrid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 12px;
-            margin-top: 12px;
-        }
-
-        @media(max-width:900px) {
-            .configGrid {
-                grid-template-columns: 1fr
-            }
-        }
-
         .subCard {
             border-radius: 16px;
             border: 1px solid rgba(170, 210, 185, .14);
@@ -605,7 +471,6 @@
             line-height: 1.25
         }
 
-        /* Painel do momento (direita) */
         .momentGrid {
             display: grid;
             grid-template-columns: 1fr 1fr 1fr;
@@ -669,7 +534,6 @@
             background: linear-gradient(90deg, rgba(255, 196, 110, .95), rgba(255, 140, 0, .72));
         }
 
-        /* Leaders futurista com podium */
         .leadersWrap {
             margin-top: 14px;
         }
@@ -775,7 +639,6 @@
             z-index: 2;
         }
 
-        /* Fallback para telas pequenas */
         @media (max-width: 520px) {
             .leaderCardHead {
                 padding: 10px 12px;
@@ -859,7 +722,6 @@
             font-size: 13px;
         }
 
-        /* Trophy animation for first place */
         .trophy {
             display: inline-flex;
             align-items: center;
@@ -953,7 +815,6 @@
             font-size: 10px
         }
 
-        /* Snapshot table */
         .tableWrap {
             margin-top: 14px;
             border-radius: 18px;
@@ -988,13 +849,11 @@
             background: rgba(255, 196, 110, .04)
         }
 
-        /* Rows not found in the imported PDF */
         .not-found td {
             color: rgba(255, 90, 90, 1);
             background: rgba(255, 90, 90, 0.04);
         }
 
-        /* Rows that reached or exceeded their meta */
         .met td {
             color: rgba(0, 190, 130, 1);
             background: rgba(0, 190, 130, 0.04);
@@ -1006,19 +865,8 @@
             vertical-align: middle;
         }
 
-        .tableSummary .pill {
-            padding: 6px 10px;
-            font-size: 13px;
-        }
-
-        /* Telão mode */
         body.telao .wrap {
             max-width: 1800px
-        }
-
-        body.telao .layout {
-            grid-template-columns: 520px 1fr;
-            gap: 18px;
         }
 
         body.telao #leftCard {
@@ -1038,13 +886,6 @@
             transform: translateX(-8px);
         }
 
-        @media(max-width:1200px) {
-            body.telao .layout {
-                grid-template-columns: 1fr
-            }
-        }
-
-        /* Countdown overlay */
         .countdownOverlay {
             position: fixed;
             inset: 0;
@@ -1073,121 +914,133 @@
             line-height: 1;
         }
 
-        /* Config tabs bar (solução criativa) */
-        #leftCard .configTabsBar {
-            display: none
+        /* ========= PRODUÇÃO ========= */
+        /* Botão e área "Resetar dados" fica oculto em produção */
+        body.prod #btnReset {
+            display: none !important;
         }
 
-        #leftCard .cfgPane {
-            display: block
+        /* Painel inteiro de PDF + Manual some em produção */
+        body.prod [data-pane="pdf"] {
+            display: none !important;
         }
 
-        @media (max-width: 1500px) and (min-width: 1121px) {
-            #leftCard .configTabsBar {
-                display: flex;
-                gap: 10px;
-                align-items: center;
-                justify-content: space-between;
-                margin: 12px 0 10px;
+        /* Em produção, bloqueia qualquer input/textarea/select da esquerda (Config) */
+        body.prod #leftCard input,
+        body.prod #leftCard textarea,
+        body.prod #leftCard select,
+        body.prod #leftCard button#btnStart {
+            pointer-events: none;
+            user-select: none;
+            filter: grayscale(1);
+            opacity: .55;
+        }
+
+        body.prod #leftCard .note::after {
+            content: " (Bloqueado em produção)";
+            opacity: .85;
+        }
+
+        /* Pílula nova do header: atualizado */
+        .pill.update {
+            border-color: rgba(255, 196, 110, .30);
+            background: rgba(255, 196, 110, .06);
+            color: rgba(255, 240, 220, .90);
+        }
+
+        /* FIX RESPONSIVIDADE — Líderes (TELÃO DESATIVADO) */
+        body:not(.telao) .leadersGrid {
+            grid-template-columns: repeat(2, minmax(320px, 1fr));
+            gap: 12px;
+        }
+
+        @media (max-width: 1280px) {
+            body:not(.telao) .leadersGrid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        body:not(.telao) .podium {
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: 10px;
+            align-items: stretch;
+        }
+
+        @media (max-width: 980px) {
+            body:not(.telao) .podium {
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+                align-items: stretch;
+            }
+        }
+
+        @media (max-width: 560px) {
+            body:not(.telao) .podium {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 980px) {
+            body:not(.telao) .pod.top1 {
+                grid-column: 1 / -1;
+                min-height: 96px;
+            }
+        }
+
+        body:not(.telao) .podName {
+            margin-right: 44px;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+        }
+
+        @media (max-width: 560px) {
+            body:not(.telao) .podName {
+                white-space: normal;
+                display: -webkit-box;
+                -webkit-line-clamp: 2;
+                -webkit-box-orient: vertical;
+                margin-right: 0;
+                padding-right: 44px;
+            }
+        }
+
+        body:not(.telao) .rankBadge {
+            width: 34px;
+            height: 34px;
+            flex: 0 0 auto;
+        }
+
+        body:not(.telao) .podMetric span {
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+            min-width: 0;
+        }
+
+        @media (max-width: 980px) {
+            body:not(.telao) .pod {
                 padding: 10px;
-                border-radius: 16px;
-                border: 1px solid rgba(170, 210, 185, .14);
-                background: rgba(0, 0, 0, .14);
-                backdrop-filter: blur(10px);
+                min-height: 78px;
             }
 
-            #leftCard .configTabs {
-                display: flex;
-                gap: 8px;
-                flex-wrap: wrap;
-                align-items: center;
+            body:not(.telao) .pod.top1 {
+                min-height: 90px;
             }
 
-            #leftCard .tabBtn {
-                width: auto;
+            body:not(.telao) .leaderCardHead {
                 padding: 10px 12px;
-                border-radius: 999px;
-                border: 1px solid rgba(170, 210, 185, .16);
-                background: rgba(0, 0, 0, .18);
-                color: rgba(236, 246, 239, .78);
-                font-weight: 900;
-                letter-spacing: .6px;
-                text-transform: uppercase;
-                cursor: pointer;
-                user-select: none;
             }
 
-            #leftCard .tabBtn:hover {
-                border-color: rgba(255, 196, 110, .35);
-                background: rgba(255, 196, 110, .06);
-            }
-
-            #leftCard .tabBtn.active {
-                border-color: rgba(255, 196, 110, .48);
-                background: linear-gradient(180deg, rgba(255, 196, 110, .14), rgba(0, 0, 0, .20));
-                color: rgba(255, 232, 200, .95);
-                box-shadow: 0 10px 28px rgba(0, 0, 0, .45);
-            }
-
-            #leftCard .cfgPane {
-                display: none
-            }
-
-            #leftCard .cfgPane.active {
-                display: block
-            }
-
-            #leftCard textarea {
-                min-height: 150px
-            }
-
-            #leftCard #logBox {
-                min-height: 150px !important
-            }
-
-            #leftCard .configGrid {
-                grid-template-columns: 1fr
+            body:not(.telao) .leaderCardHead .tag {
+                font-size: 11px;
+                letter-spacing: .45px;
             }
         }
 
-        @media (max-width: 1120px) {
-            #leftCard .configTabsBar {
-                display: none
-            }
-
-            #leftCard .cfgPane {
-                display: block
-            }
-
-            #leftCard .cfgPane.active {
-                display: block
-            }
-        }
-
-        /* Util */
-        .muted {
-            color: var(--muted)
-        }
-
-        .note {
-            font-size: 12px;
-            color: var(--muted);
-            line-height: 1.3
-        }
-
-        .rightColSticky {
-            position: sticky;
-            top: 84px;
-        }
-
-        @media(max-width:1200px) {
-            .rightColSticky {
-                position: static
-            }
-
-            .header {
-                position: static
-            }
+        body:not(.telao) .leaderCard,
+        body:not(.telao) .pod {
+            min-width: 0;
         }
     </style>
 </head>
@@ -1195,13 +1048,11 @@
 <body>
     <div class="gridOverlay"></div>
 
-    <!-- overlay countdown 10s -->
     <div class="countdownOverlay" id="countdownOverlay" aria-hidden="true">
         <div class="countdownNum" id="countdownNum">10</div>
     </div>
 
     <div class="wrap">
-        <!-- HEADER -->
         <div class="header">
             <div class="brand">
                 <div class="logo" title="Rover em Guerra — logomarca">
@@ -1212,12 +1063,17 @@
                     <div class="slogan">UMA GUERRA CONTRA OS PREÇOS ALTOS</div>
                     <div class="subtitle">Importa PDF Winthor (315): <b>Cli.Posit</b> • <b>Mix</b> • <b>Vl Venda</b>
                     </div>
+                    <!-- ✅ NOVO: Status de atualização -->
+                    <div class="subtitle">
+                        <span class="pill update mono" id="updatePill">📌 Atualizado: — | hash: —</span>
+                    </div>
                 </div>
             </div>
 
             <div class="headRight">
                 <input id="logoInput" type="file" accept="image/*" style="display:none" />
                 <span class="pill warn" id="statusPill">⏱️ sem meta</span>
+
                 <button class="btn" id="btnTelao" title="Alternar modo telão" aria-pressed="false">
                     <span class="icon" aria-hidden="true">
                         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"
@@ -1234,19 +1090,19 @@
                     </span>
                     <span class="btnTooltip" aria-hidden="true">Entrar no modo telão</span>
                 </button>
+
                 <button class="btn primary mono" id="btnReset">RESETAR DADOS</button>
             </div>
         </div>
 
         <div class="layout">
-            <!-- LEFT: CONFIG -->
+            <!-- LEFT -->
             <div class="card" id="leftCard">
                 <div class="cardHeader">
                     <div>
                         <h2 class="cardTitle">Configuração</h2>
-                        <div class="cardDesc">No <span class="mono">file://</span>, coloque <span
-                                class="mono">pdf.min.js</span> e
-                            <span class="mono">pdf.worker.min.js</span> na mesma pasta do HTML.
+                        <div class="cardDesc">
+                            Em produção, edição manual e upload de PDF ficam bloqueados.
                         </div>
                     </div>
                     <div class="miniRow">
@@ -1259,17 +1115,6 @@
                 <div class="cardBody">
                     <div class="divider"></div>
 
-                    <!-- tabs (só aparece na faixa “apertada”) -->
-                    <div class="configTabsBar">
-                        <div class="configTabs">
-                            <button class="tabBtn active" type="button" data-tab="meta">META</button>
-                            <button class="tabBtn" type="button" data-tab="pdf">PDF</button>
-                            <button class="tabBtn" type="button" data-tab="log">LOG</button>
-                        </div>
-                        <span class="pill mono" id="cfgHint">Configuração</span>
-                    </div>
-
-                    <!-- PANE META -->
                     <div class="cfgPane active" data-pane="meta">
                         <div class="subCard">
                             <div class="subHead">
@@ -1322,7 +1167,7 @@
                         </div>
                     </div>
 
-                    <!-- PANE PDF/MANUAL -->
+                    <!-- ✅ EXISTE, mas será oculto em produção via CSS (body.prod) -->
                     <div class="cfgPane" data-pane="pdf">
                         <div class="subCard">
                             <div class="subHead">
@@ -1332,10 +1177,6 @@
 
                             <label>Importar PDF (315)</label>
                             <input id="pdfFile" type="file" accept="application/pdf" />
-                            <div class="note" style="margin-top:8px">
-                                ✅ Para <span class="mono">file://</span>: mantenha <span class="mono">pdf.min.js</span>
-                                e <span class="mono">pdf.worker.min.js</span> ao lado deste HTML.
-                            </div>
 
                             <div class="divider"></div>
 
@@ -1359,7 +1200,6 @@
                         </div>
                     </div>
 
-                    <!-- PANE LOG -->
                     <div class="cfgPane" data-pane="log">
                         <div class="subCard">
                             <div class="subHead">
@@ -1368,7 +1208,7 @@
                             </div>
                             <textarea id="logBox" readonly class="mono" style="min-height:170px"></textarea>
                             <div class="note" style="margin-top:10px">
-                                Se PDF não lê no file://, use os arquivos locais do PDF.js ao lado do HTML.
+                                Em produção, os dados vêm do servidor (public/data/latest.json).
                             </div>
                         </div>
                     </div>
@@ -1376,14 +1216,12 @@
                 </div>
             </div>
 
-            <!-- RIGHT: MOMENTO -->
-            <div class="card rightColSticky" id="rightCard">
+            <!-- RIGHT -->
+            <div class="card" id="rightCard" style="position:sticky; top:84px;">
                 <div class="cardHeader">
                     <div>
                         <h2 class="cardTitle">DASHBOARD DE ACOMPANHAMENTO</h2>
-                        <div class="cardDesc">Líderes + Snapshot + Tabela geral em uma única tela. (Sem botão de “visão
-                            geral”.)
-                        </div>
+                        <div class="cardDesc">Líderes + Snapshot + Tabela geral em uma única tela.</div>
                     </div>
                     <div class="miniRow">
                         <span class="pill mono" id="startHintPill">⏳ —</span>
@@ -1392,7 +1230,6 @@
                 </div>
 
                 <div class="cardBody">
-                    <!-- KPIs -->
                     <div class="momentGrid">
                         <div class="kpiCard">
                             <div class="kpiLabel">Vendido agora</div>
@@ -1421,12 +1258,11 @@
                                 <span class="pill mono" id="updatedKpi">—</span>
                             </div>
                             <div class="kpiSub" style="margin-top:12px" id="integritySub">
-                                Aguardando PDF para validação. Countdown 10s + alarme no fim.
+                                Aguardando dados do servidor. Countdown 10s + alarme no fim.
                             </div>
                         </div>
                     </div>
 
-                    <!-- Leaders -->
                     <div class="leadersWrap">
                         <div class="leadersHeader">
                             <h2>Líderes do Momento</h2>
@@ -1435,7 +1271,6 @@
                         <div class="leadersGrid" id="leadersGrid"></div>
                     </div>
 
-                    <!-- Snapshot + Table -->
                     <div class="tableWrap">
                         <div style="display:flex; gap:12px; align-items:center; justify-content:space-between;">
                             <div class="tableSummary" id="tableSummary"
@@ -1444,14 +1279,17 @@
                                 <span class="pill mono" id="summaryNotFound">❌ Não encontrados/sem venda: —</span>
                             </div>
                             <div style="padding:8px 12px;">
-                                <div class="nameFilterWrap">
-                                    <input id="nameFilter" type="search"
-                                        placeholder="Filtrar por nome (RCA/Vendedor)" />
+                                <div class="nameFilterWrap"
+                                    style="display:inline-flex; align-items:center; gap:8px; background:rgba(0,0,0,0.22); padding:6px 8px; border-radius:10px; border:1px solid rgba(255,255,255,0.04);">
+                                    <input id="nameFilter" type="search" placeholder="Filtrar por nome (RCA/Vendedor)"
+                                        style="background:transparent; border:none; color:inherit; padding:6px 8px; width:220px; outline:none; font-size:13px;" />
                                     <button type="button" class="nameFilterClear" id="nameFilterClear"
-                                        aria-label="Limpar filtro">×</button>
+                                        aria-label="Limpar filtro"
+                                        style="background:transparent; border:none; color:var(--muted); font-weight:900; cursor:pointer; padding:4px 8px; border-radius:8px;">×</button>
                                 </div>
                             </div>
                         </div>
+
                         <table>
                             <thead>
                                 <tr>
@@ -1466,7 +1304,7 @@
                             </thead>
                             <tbody id="tbody">
                                 <tr>
-                                    <td colspan="7" class="muted">Carregando base...</td>
+                                    <td colspan="7" style="color:var(--muted)">Carregando base...</td>
                                 </tr>
                             </tbody>
                         </table>
@@ -1478,6 +1316,21 @@
     </div>
 
     <script>
+        // =========================================
+        // ✅ MODO PRODUÇÃO / DEV (controle simples)
+        // -----------------------------------------
+        // Produção = true: esconde upload de PDF, trava edição manual e trava start/reset pelo público.
+        // Dev = false: mantém tudo como antes.
+        //
+        // Para DEV:
+        // - coloque PROD = false
+        // ou
+        // - acesse com ?dev=1
+        // =========================================
+        const FORCE_DEV = new URLSearchParams(location.search).get("dev") === "1";
+        const PROD = !FORCE_DEV; // produção por padrão
+        if (PROD) document.body.classList.add("prod");
+
         // ========= Logger cedo =========
         const logBox = document.getElementById("logBox");
         function log(msg) {
@@ -1486,75 +1339,12 @@
             console.log(`[${t}] ${msg}`);
         }
 
-        // ========= Loader PDF.js (LOCAL primeiro p/ file://) =========
-        const PDFJS_CANDIDATES = [
-            { name: "local", lib: "./pdf.min.js", worker: "./pdf.worker.min.js" },
-            {
-                name: "jsDelivr", lib: "https://cdn.jsdelivr.net/npm/pdfjs-dist@4.10.38/legacy/build/pdf.min.js",
-                worker: "https://cdn.jsdelivr.net/npm/pdfjs-dist@4.10.38/legacy/build/pdf.worker.min.js"
-            },
-            {
-                name: "unpkg", lib: "https://unpkg.com/pdfjs-dist@4.10.38/legacy/build/pdf.min.js",
-                worker: "https://unpkg.com/pdfjs-dist@4.10.38/legacy/build/pdf.worker.min.js"
-            },
-        ];
-
-        function loadScript(src) {
-            return new Promise((resolve, reject) => {
-                const s = document.createElement("script");
-                s.src = src;
-                s.async = true;
-                s.onload = () => resolve();
-                s.onerror = () => reject(new Error("Falha ao carregar: " + src));
-                document.head.appendChild(s);
-            });
-        }
-
-        async function ensurePdfJs() {
-            if (window.pdfjsLib) return { ok: true, source: "preload" };
-
-            for (const c of PDFJS_CANDIDATES) {
-                try {
-                    log(`Tentando carregar PDF.js (${c.name})...`);
-                    await loadScript(c.lib);
-
-                    if (window.pdfjsLib) {
-                        try {
-                            window.pdfjsLib.GlobalWorkerOptions.workerSrc = c.worker;
-                            log(`PDF.js OK (${c.name}). Worker setado.`);
-                        } catch (e) {
-                            log(`PDF.js OK (${c.name}). Mas não deu pra setar worker: ${e.message}`);
-                        }
-                        return { ok: true, source: c.name };
-                    } else {
-                        log(`Script carregou, mas pdfjsLib não apareceu (${c.name}).`);
-                    }
-                } catch (err) {
-                    log(`Falhou (${c.name}): ${err.message}`);
-                }
-            }
-
-            log("❌ PDF.js não carregou. Para file://, use os arquivos locais.");
-            log("Coloque na mesma pasta: pdf.min.js e pdf.worker.min.js");
-            return { ok: false, source: "none" };
-        }
-
+        // ========= Em produção: NÃO carregar PDF.js (não precisa) =========
         (async () => {
-            const pdf = await ensurePdfJs();
-            startApp(pdf.ok, pdf.source);
+            startApp(false, PROD ? "server-json" : "dev");
         })();
 
-        // ========= APP =========
         function startApp(pdfOk, pdfSource) {
-            const pdfStatusPill = document.getElementById("pdfStatusPill");
-            pdfStatusPill.textContent = pdfOk ? `PDF.js ON (${pdfSource})` : "PDF.js OFF";
-            pdfStatusPill.classList.toggle("ok", pdfOk);
-            pdfStatusPill.classList.toggle("warn", !pdfOk);
-
-            if (!pdfOk) {
-                alert("PDF.js não carregou. O painel funciona, mas sem leitura de PDF.\n\nPara file://: coloque pdf.min.js e pdf.worker.min.js na mesma pasta do HTML.");
-            }
-
             // =======================
             // METAS PADRÃO (fixas)
             // =======================
@@ -1577,9 +1367,6 @@
                 ["298", "GABRIEL GOMES DE MACEDO"],
             ]);
 
-            // =======================
-            // BASE (pré-carregada)
-            // =======================
             function baseRows() {
                 const keys = Array.from(META_PADRAO.keys()).sort((a, b) => Number(a) - Number(b));
                 return keys.map(rca => ({
@@ -1614,16 +1401,16 @@
             // =======================
             // STATE
             // =======================
-            const LS_KEY = "rover_em_guerra_state_final_v1";
+            const LS_KEY = "rover_em_guerra_state_final_v2";
             const defaultState = {
                 goalTitle: "META RELÂMPAGO",
                 goalValue: 300000,
                 goalStart: null,
                 goalEnd: null,
-                soldManual: 0,
                 source: "base",
                 rows: baseRows(),
                 lastUpdated: null,
+                pdfHash: null,
                 telao: false
             };
 
@@ -1649,11 +1436,6 @@
             const goalStartDT = el("goalStartDT");
             const goalEndDT = el("goalEndDT");
             const btnStart = el("btnStart");
-
-            const pdfFile = el("pdfFile");
-            const rawData = el("rawData");
-            const btnParse = el("btnParse");
-            const soldNow = el("soldNow");
 
             const btnReset = el("btnReset");
             const btnTelao = el("btnTelao");
@@ -1684,6 +1466,7 @@
             const nameFilterClear = el("nameFilterClear");
 
             const metaModePill = el("metaModePill");
+            const updatePill = el("updatePill");
 
             const countdownOverlay = el("countdownOverlay");
             const countdownNum = el("countdownNum");
@@ -1696,6 +1479,458 @@
             const esc = s => String(s ?? "").replace(/[&<>"']/g, m => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[m]));
             const pctOver = (sales, meta) => (meta > 0 ? (sales / meta) * 100 : 0);
 
+            function parseNum(s) {
+                if (s == null) return 0;
+                s = String(s).trim().replace("R$", "").replace(/\s+/g, "");
+                const hasComma = s.includes(",");
+                const hasDot = s.includes(".");
+                if (hasComma) {
+                    if (/(,\d{1,2})$/.test(s)) {
+                        s = s.replace(/\./g, "");
+                        s = s.replace(",", ".");
+                    } else {
+                        s = s.replace(/,/g, "");
+                    }
+                } else if (hasDot) {
+                    if (!/\.\d{1,2}$/.test(s)) s = s.replace(/\./g, "");
+                }
+                const v = Number(s);
+                return Number.isFinite(v) ? v : 0;
+            }
+
+            function parseLocalDT(val) {
+                if (!val) return null;
+                const d = new Date(val);
+                return Number.isFinite(d.getTime()) ? d : null;
+            }
+
+            function formatDT(d) {
+                if (!d) return "—";
+                try { return new Date(d).toLocaleString("pt-BR", { hour12: false }); } catch { return "—"; }
+            }
+
+            function formatTimeLeft(ms) {
+                const s = Math.max(0, Math.floor(ms / 1000));
+                const hh = String(Math.floor(s / 3600)).padStart(2, "0");
+                const mm = String(Math.floor((s % 3600) / 60)).padStart(2, "0");
+                const ss = String(s % 60).padStart(2, "0");
+                return `${hh}:${mm}:${ss}`;
+            }
+
+            // =======================
+            // Countdown + Audio (mantido)
+            // =======================
+            const AudioCtx = window.AudioContext || window.webkitAudioContext;
+            let audioCtx = null;
+            let activeAudioNodes = [];
+            let alarmTimerId = null;
+
+            function ensureAudio() {
+                if (!AudioCtx) return null;
+                if (!audioCtx) audioCtx = new AudioCtx();
+                if (audioCtx.state === "suspended") audioCtx.resume().catch(() => { });
+                return audioCtx;
+            }
+
+            function stopAllAudioNow() {
+                try {
+                    activeAudioNodes.forEach(n => { try { n.stop?.(); } catch { } try { n.disconnect?.(); } catch { } });
+                } finally { activeAudioNodes = []; }
+                if (alarmTimerId) { clearTimeout(alarmTimerId); alarmTimerId = null; }
+            }
+
+            function playTone({ freq = 880, durationMs = 120, gain = 0.08, type = "sine", attackMs = 8, releaseMs = 60 } = {}) {
+                const ctx = ensureAudio();
+                if (!ctx) return;
+
+                const osc = ctx.createOscillator();
+                const g = ctx.createGain();
+                osc.type = type;
+                osc.frequency.value = freq;
+
+                const t0 = ctx.currentTime;
+                const dur = durationMs / 1000;
+                const a = Math.max(0.001, attackMs / 1000);
+                const r = Math.max(0.001, releaseMs / 1000);
+                const t1 = t0 + dur;
+
+                g.gain.setValueAtTime(0.0001, t0);
+                g.gain.exponentialRampToValueAtTime(Math.max(0.0002, gain), t0 + a);
+                g.gain.setValueAtTime(Math.max(0.0002, gain), Math.max(t0 + a, t1 - r));
+                g.gain.exponentialRampToValueAtTime(0.0001, t1);
+
+                osc.connect(g); g.connect(ctx.destination);
+                osc.start(t0); osc.stop(t1 + 0.02);
+
+                activeAudioNodes.push(osc, g);
+                setTimeout(() => {
+                    try { osc.disconnect(); } catch { }
+                    try { g.disconnect(); } catch { }
+                    activeAudioNodes = activeAudioNodes.filter(n => n !== osc && n !== g);
+                }, durationMs + 120);
+            }
+
+            function beepCountdownTick() { playTone({ freq: 880, durationMs: 95, gain: 0.06, type: "sine", attackMs: 6, releaseMs: 55 }); }
+
+            function startAlarm5s() {
+                stopAllAudioNow();
+                const ctx = ensureAudio();
+                if (!ctx) return;
+                const pattern = [{ f: 659, d: 140 }, { f: 880, d: 160 }, { f: 988, d: 180 }];
+                let i = 0;
+                const start = Date.now();
+                const maxMs = 5000;
+                function step() {
+                    if (Date.now() - start >= maxMs) return;
+                    const note = pattern[i % pattern.length];
+                    playTone({ freq: note.f, durationMs: note.d, gain: 0.085, type: "triangle", attackMs: 10, releaseMs: 90 });
+                    i++;
+                    alarmTimerId = setTimeout(step, 260);
+                }
+                step();
+            }
+
+            function stopAlarm() { stopAllAudioNow(); }
+
+            let overlayActive = false;
+            let lastOverlaySecond = null;
+
+            function showCountdownSeconds(sec) {
+                countdownNum.textContent = String(sec);
+                countdownOverlay.classList.add("show");
+                countdownOverlay.setAttribute("aria-hidden", "false");
+            }
+
+            function hideCountdown() {
+                countdownOverlay.classList.remove("show");
+                countdownOverlay.setAttribute("aria-hidden", "true");
+            }
+
+            function resetFinalCountdownState() {
+                overlayActive = false; lastOverlaySecond = null; hideCountdown();
+            }
+
+            function updateFinalCountdown(msLeft) {
+                const secLeft = Math.ceil(msLeft / 1000);
+                if (secLeft >= 1 && secLeft <= 10) {
+                    overlayActive = true;
+                    showCountdownSeconds(secLeft);
+                    if (lastOverlaySecond !== secLeft) {
+                        lastOverlaySecond = secLeft;
+                        beepCountdownTick();
+                    }
+                } else {
+                    if (overlayActive) resetFinalCountdownState();
+                }
+            }
+
+            // =======================
+            // Presets
+            // =======================
+            function applyPreset(val) {
+                if (val === "meta3m") {
+                    goalTitle.value = "META 3 MILHÕES";
+                    goalValue.value = 3000000;
+                    metaModePill.textContent = "preset";
+                } else if (val === "metarelampago") {
+                    goalTitle.value = "META RELÂMPAGO";
+                    goalValue.value = 300000;
+                    metaModePill.textContent = "preset";
+                } else {
+                    metaModePill.textContent = "personalizada";
+                }
+            }
+            goalPreset.addEventListener("change", () => applyPreset(goalPreset.value));
+
+            // =======================
+            // ✅ NOVO: carregar JSON do servidor (public/data/latest.json)
+            // =======================
+            async function loadServerLatest() {
+                try {
+                    const res = await fetch(`/data/latest.json?ts=${Date.now()}`, { cache: "no-store" });
+                    if (!res.ok) throw new Error(`HTTP ${res.status}`);
+                    const payload = await res.json();
+                    if (!payload?.rows?.length) throw new Error("JSON sem rows");
+
+                    state.rows = mergeIntoBase(payload.rows);
+                    state.source = "pdf";
+                    state.lastUpdated = payload.generatedAt || new Date().toISOString();
+                    state.pdfHash = payload.pdfHash || null;
+
+                    saveState();
+                    render();
+                    log(`Servidor: carregou latest.json (${payload.rows.length} RCAs). Hash ${payload.pdfHash || "-"}`);
+                } catch (e) {
+                    log(`Servidor: não carregou latest.json (${e.message}). Mantendo localStorage/base.`);
+                    render();
+                }
+            }
+
+            // =======================
+            // Render
+            // =======================
+            let timerTickId = null;
+            let endedAlarmFired = false;
+
+            function render() {
+                document.body.classList.toggle("telao", !!state.telao);
+                btnTelao.classList.toggle("primary", !!state.telao);
+
+                btnTelao.setAttribute('aria-pressed', !!state.telao ? 'true' : 'false');
+                btnTelao.title = state.telao ? 'Sair do modo telão' : 'Entrar no modo telão';
+                const tt = document.querySelector('#btnTelao .btnTooltip');
+                if (tt) tt.textContent = state.telao ? 'Sair do modo telão' : 'Entrar no modo telão';
+
+                goalTitle.value = state.goalTitle ?? goalTitle.value;
+                goalValue.value = state.goalValue ?? goalValue.value;
+
+                if (state.goalStart) {
+                    const d = new Date(state.goalStart);
+                    goalStartDT.value = d.toISOString().slice(0, 16);
+                } else goalStartDT.value = "";
+
+                if (state.goalEnd) {
+                    const d = new Date(state.goalEnd);
+                    goalEndDT.value = d.toISOString().slice(0, 16);
+                } else goalEndDT.value = "";
+
+                // Header update pill
+                const upd = state.lastUpdated ? new Date(state.lastUpdated).toLocaleString("pt-BR", { hour12: false }) : "—";
+                const hash = state.pdfHash ? String(state.pdfHash) : "—";
+                if (updatePill) updatePill.textContent = `📌 Atualizado: ${upd} | hash: ${hash}`;
+
+                const now = Date.now();
+                let pillTxt = "⏱️ sem meta";
+                let pillCls = "pill warn";
+
+                if (state.goalEnd) {
+                    const s = state.goalStart ? new Date(state.goalStart).getTime() : now;
+                    const e = new Date(state.goalEnd).getTime();
+
+                    const startLabel = state.goalStart ? new Date(state.goalStart) : null;
+                    const endLabel = new Date(state.goalEnd);
+
+                    rangePill.textContent = `📅 ${formatDT(startLabel || new Date())} → ${formatDT(endLabel)}`;
+
+                    if (now < s) { pillTxt = "⏳ aguardando início"; pillCls = "pill warn"; }
+                    else if (now >= s && now < e) { pillTxt = `🪖 ativa`; pillCls = "pill ok"; }
+                    else { pillTxt = "⚠️ encerrada"; pillCls = "pill warn"; }
+                } else {
+                    rangePill.textContent = "📅 —";
+                }
+
+                statusPill.className = pillCls;
+                statusPill.textContent = pillTxt;
+
+                const total = (state.rows || []).reduce((a, r) => a + (Number(r.sales) || 0), 0);
+                const metaMom = Number(state.goalValue) || 0;
+                const p = metaMom > 0 ? (total / metaMom) * 100 : 0;
+                soldKpi.textContent = brl(total);
+                pctKpi.textContent = metaMom > 0 ? `${p.toFixed(1)}% da meta (${brl(metaMom)})` : "Defina a meta do momento";
+                bar.style.width = `${clamp(p, 0, 100)}%`;
+
+                sourceKpi.textContent = state.source === "pdf" ? "📄 servidor" : "📄 base";
+                sourceKpi.className = `pill mono ${state.source === "pdf" ? "ok" : "warn"}`;
+
+                updatedKpi.textContent = state.lastUpdated ? `⏱️ ${new Date(state.lastUpdated).toLocaleTimeString()}` : "—";
+                startHintPill.textContent = state.goalStart ? `⏳ começa ${new Date(state.goalStart).toLocaleTimeString()}` : "⏳ começa agora";
+
+                const sorted = [...(state.rows || [])].sort((a, b) => (b.sales || 0) - (a.sales || 0));
+                const filterText = (state.nameFilter || "").trim().toLowerCase();
+
+                let countMet = 0;
+                let countNotFoundOrZero = 0;
+
+                const filteredRows = sorted.filter(r => {
+                    if (!filterText) return true;
+                    const hay = (`${r.rca || ''} ${r.name || ''}`).toLowerCase();
+                    return hay.indexOf(filterText) !== -1;
+                });
+
+                tbody.innerHTML = filteredRows.map(r => {
+                    const pm = pctOver(r.sales, r.meta || 0);
+                    const reachedMeta = (Number(r.sales) || 0) >= (Number(r.meta) || 0) && (Number(r.meta) || 0) > 0;
+                    const notFound = (state.source === "pdf" && r.found === false);
+
+                    if (reachedMeta) countMet++;
+                    if (notFound || (Number(r.sales) || 0) === 0) countNotFoundOrZero++;
+
+                    const rowClass = notFound ? 'not-found' : (reachedMeta ? 'met' : '');
+                    const checkHtml = reachedMeta && !notFound ? `<span class="metIcon">✅</span>&nbsp;` : '';
+
+                    return `<tr class="${rowClass}">
+            <td>${esc(r.rca)}</td>
+            <td>${checkHtml}${esc(r.name)}</td>
+            <td>${brl(r.sales)}</td>
+            <td>${pm.toFixed(1)}%</td>
+            <td>${Number(r.cliPosit || 0)}</td>
+            <td>${Number(r.mix || 0)}</td>
+            <td>${brl(r.meta || 0)}</td>
+          </tr>`;
+                }).join("");
+
+                const summaryMetEl = document.getElementById('summaryMet');
+                const summaryNotFoundEl = document.getElementById('summaryNotFound');
+                if (summaryMetEl) summaryMetEl.textContent = `✅ Meta Batida: ${countMet}`;
+                if (summaryNotFoundEl) summaryNotFoundEl.textContent = `❌ Não encontrados/sem venda: ${countNotFoundOrZero}`;
+
+                renderLeaders(filteredRows);
+
+                integritySub.textContent = PROD
+                    ? "Produção: dados vêm do servidor (latest.json). Edição manual e upload bloqueados."
+                    : "DEV: você pode editar e testar manualmente (use ?dev=1).";
+            }
+
+            function leaderCard(title, icon, rows, metricLabel, metricFn) {
+                const r1 = rows[0] || null;
+                const r2 = rows[1] || null;
+                const r3 = rows[2] || null;
+                const r4 = rows[3] || null;
+
+                function podHTML(rank, r, extraCls) {
+                    const cls = `pod ${extraCls || ""}`.trim();
+                    if (!r) {
+                        return `<div class="${cls}">
+              <div class="rankBadge">${rank}</div>
+              <div class="podName mono" style="color:var(--muted)">—</div>
+              <div class="podSub"><span class="mono">RCA —</span></div>
+              <div class="podMetric"><span style="color:var(--muted)">—</span><small>${esc(metricLabel)}</small></div>
+            </div>`;
+                    }
+
+                    const trophyHtml = extraCls && extraCls.indexOf('top1') !== -1 ? `
+            <span class="trophy" aria-hidden="true">
+              <svg width="28" height="28" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                <path d="M8 2h8v2a3 3 0 0 1-3 3H11A3 3 0 0 1 8 4V2z" fill="currentColor" opacity="0.95"/>
+                <path d="M6 6H4a2 2 0 0 0-2 2v1a5 5 0 0 0 4 4.9V16a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2v-2.1A5 5 0 0 0 22 9V8a2 2 0 0 0-2-2h-2" stroke="currentColor" stroke-width="0.8" stroke-linecap="round" stroke-linejoin="round"/>
+                <path d="M9 20h6v2H9v-2z" fill="currentColor" opacity="0.95"/>
+                <circle cx="18.5" cy="7.5" r="1.2" fill="currentColor" opacity="0.9"/>
+              </svg>
+            </span>` : '';
+
+                    return `<div class="${cls}">
+            <div class="rankBadge">${rank}</div>
+            <div class="podName">${trophyHtml}${esc(r.name)}</div>
+            <div class="podSub"><span class="mono">RCA ${esc(r.rca)}</span></div>
+            <div class="podMetric"><span>${esc(metricFn(r))}</span><small>${esc(metricLabel)}</small></div>
+          </div>`;
+                }
+
+                return `
+          <div class="leaderCard">
+            <div class="leaderCardHead">
+              <div class="tag">
+                <span class="icon">${icon}</span>
+                <span>${title}</span>
+              </div>
+              <span class="smallPill">TOP 4</span>
+            </div>
+            <div class="podium">
+              ${podHTML(2, r2, "")}
+              ${podHTML(1, r1, "top1")}
+              ${podHTML(3, r3, "")}
+            </div>
+            <div style="padding:0 14px 14px">
+              <div class="pod" style="min-height:auto">
+                <div class="rankBadge">4</div>
+                <div class="podName">${r4 ? esc(r4.name) : '<span style="color:var(--muted)">—</span>'}</div>
+                <div class="podSub">${r4 ? `<span class="mono">RCA ${esc(r4.rca)}</span>` : '<span class="mono">RCA —</span>'}</div>
+                <div class="podMetric">
+                  <span>${r4 ? esc(metricFn(r4)) : '<span style="color:var(--muted)">—</span>'}</span>
+                  <small>${esc(metricLabel)}</small>
+                </div>
+              </div>
+            </div>
+          </div>
+        `;
+            }
+
+            function renderLeaders(filteredRows) {
+                const sourceRows = Array.isArray(filteredRows) ? filteredRows : (state.rows || []);
+                function top4ByFn(fn) { return [...sourceRows].sort((a, b) => fn(b) - fn(a)).slice(0, 4); }
+
+                const volume = top4ByFn(r => Number(r.sales) || 0);
+                const pct = top4ByFn(r => pctOver(r.sales, r.meta || 0));
+                const pos = top4ByFn(r => Number(r.cliPosit) || 0);
+                const mix = top4ByFn(r => Number(r.mix) || 0);
+
+                leadersGrid.innerHTML = [
+                    leaderCard("Maior volume de vendas", "💥", volume, "Vl venda", r => brl(r.sales)),
+                    leaderCard("Maior % sobre meta", "🎯", pct, "% meta", r => `${pctOver(r.sales, r.meta || 0).toFixed(1)}%`),
+                    leaderCard("Maior positivação", "🪖", pos, "Cli.posit", r => String(Number(r.cliPosit || 0))),
+                    leaderCard("Maior mix", "🧨", mix, "Mix", r => String(Number(r.mix || 0))),
+                ].join("");
+            }
+
+            // =======================
+            // Timer loop
+            // =======================
+            function startTimerLoop() {
+                if (timerTickId) clearInterval(timerTickId);
+                timerTickId = setInterval(() => {
+                    const now = Date.now();
+
+                    if (!state.goalEnd) {
+                        timeKpi.textContent = "00:00:00";
+                        timeSub.textContent = "Sem meta ativa";
+                        startMini.textContent = "—";
+                        endMini.textContent = "—";
+                        resetFinalCountdownState();
+                        endedAlarmFired = false;
+                        return;
+                    }
+
+                    const endMs = new Date(state.goalEnd).getTime();
+                    const startMs = state.goalStart ? new Date(state.goalStart).getTime() : now;
+
+                    startMini.textContent = state.goalStart ? new Date(state.goalStart).toLocaleString("pt-BR", { hour12: false }) : "agora";
+                    endMini.textContent = new Date(state.goalEnd).toLocaleString("pt-BR", { hour12: false });
+
+                    if (now < startMs) {
+                        timeKpi.textContent = formatTimeLeft(startMs - now);
+                        timeSub.textContent = "Aguardando início";
+                        resetFinalCountdownState();
+                        endedAlarmFired = false;
+                        return;
+                    }
+
+                    const msLeft = endMs - now;
+                    if (msLeft > 0) {
+                        timeKpi.textContent = formatTimeLeft(msLeft);
+                        timeSub.textContent = "Tempo restante";
+                        endedAlarmFired = false;
+                        updateFinalCountdown(msLeft);
+                    } else {
+                        timeKpi.textContent = "00:00:00";
+                        timeSub.textContent = "Encerrado";
+                        resetFinalCountdownState();
+
+                        if (!endedAlarmFired) {
+                            endedAlarmFired = true;
+                            startAlarm5s();
+                            log("⏰ Meta encerrada: alarme suave por ~5s.");
+                        }
+                    }
+                }, 200);
+            }
+
+            // =======================
+            // Interações (bloqueadas em produção)
+            // =======================
+            btnTelao.addEventListener("click", () => {
+                state.telao = !state.telao;
+                saveState();
+                render();
+            });
+
+            btnStopAlarm.addEventListener("click", () => { stopAlarm(); log("Alarme interrompido."); });
+            btnClearLog.addEventListener("click", () => { logBox.value = ""; log("Log limpo."); });
+            btnCopyLog.addEventListener("click", async () => {
+                try { await navigator.clipboard.writeText(logBox.value || ""); log("Log copiado para a área de transferência."); }
+                catch { alert("Não foi possível copiar automaticamente. Selecione e copie manualmente."); }
+            });
+
+            // Filtro por nome (público, pode)
             if (nameFilterInput) {
                 nameFilterInput.value = state.nameFilter || "";
                 nameFilterInput.addEventListener('input', (e) => {
@@ -1722,749 +1957,58 @@
                 }
             }
 
-            function parseNum(s) {
-                if (s == null) return 0;
-                s = String(s).trim().replace("R$", "").replace(/\s+/g, "");
+            // Só no DEV libera Start/Reset
+            if (!PROD) {
+                btnStart.addEventListener("click", () => {
+                    ensureAudio();
 
-                const hasComma = s.includes(",");
-                const hasDot = s.includes(".");
+                    const title = goalTitle.value.trim() || "META";
+                    const val = parseNum(goalValue.value);
 
-                if (hasComma) {
-                    if (/(,\d{1,2})$/.test(s)) {
-                        s = s.replace(/\./g, "");
-                        s = s.replace(",", ".");
-                    } else {
-                        s = s.replace(/,/g, "");
-                    }
-                } else if (hasDot) {
-                    if (/\.\d{1,2}$/.test(s)) {
-                        // ok
-                    } else {
-                        s = s.replace(/\./g, "");
-                    }
-                }
+                    const startD = parseLocalDT(goalStartDT.value);
+                    const endD = parseLocalDT(goalEndDT.value);
 
-                const v = Number(s);
-                return Number.isFinite(v) ? v : 0;
-            }
+                    if (!endD) { alert("O FIM (data e hora) é obrigatório."); return; }
+                    const start = startD ? startD : new Date();
+                    if (endD.getTime() <= start.getTime()) { alert("O FIM precisa ser maior que o INÍCIO."); return; }
 
-            function parseLocalDT(val) {
-                if (!val) return null;
-                const d = new Date(val);
-                return Number.isFinite(d.getTime()) ? d : null;
-            }
-
-            function formatDT(d) {
-                if (!d) return "—";
-                try {
-                    return new Date(d).toLocaleString("pt-BR", { hour12: false });
-                } catch {
-                    return "—";
-                }
-            }
-
-            function formatTimeLeft(ms) {
-                const s = Math.max(0, Math.floor(ms / 1000));
-                const hh = String(Math.floor(s / 3600)).padStart(2, "0");
-                const mm = String(Math.floor((s % 3600) / 60)).padStart(2, "0");
-                const ss = String(s % 60).padStart(2, "0");
-                return `${hh}:${mm}:${ss}`;
-            }
-
-            // =======================
-            // Audio + Countdown (10s) — NOVO (estável e menos perturbador)
-            // =======================
-            const AudioCtx = window.AudioContext || window.webkitAudioContext;
-            let audioCtx = null;
-
-            let activeAudioNodes = [];
-            let alarmTimerId = null;
-
-            function ensureAudio() {
-                if (!AudioCtx) return null;
-                if (!audioCtx) audioCtx = new AudioCtx();
-                if (audioCtx.state === "suspended") {
-                    audioCtx.resume().catch(() => { });
-                }
-                return audioCtx;
-            }
-
-            function stopAllAudioNow() {
-                try {
-                    activeAudioNodes.forEach(n => {
-                        try { n.stop?.(); } catch { }
-                        try { n.disconnect?.(); } catch { }
-                    });
-                } finally {
-                    activeAudioNodes = [];
-                }
-                if (alarmTimerId) {
-                    clearTimeout(alarmTimerId);
-                    alarmTimerId = null;
-                }
-            }
-
-            function playTone({
-                freq = 880,
-                durationMs = 120,
-                gain = 0.08,
-                type = "sine",
-                attackMs = 8,
-                releaseMs = 60
-            } = {}) {
-                const ctx = ensureAudio();
-                if (!ctx) return;
-
-                const osc = ctx.createOscillator();
-                const g = ctx.createGain();
-
-                osc.type = type;
-                osc.frequency.value = freq;
-
-                const t0 = ctx.currentTime;
-                const dur = durationMs / 1000;
-                const a = Math.max(0.001, attackMs / 1000);
-                const r = Math.max(0.001, releaseMs / 1000);
-                const t1 = t0 + dur;
-
-                g.gain.setValueAtTime(0.0001, t0);
-                g.gain.exponentialRampToValueAtTime(Math.max(0.0002, gain), t0 + a);
-                g.gain.setValueAtTime(Math.max(0.0002, gain), Math.max(t0 + a, t1 - r));
-                g.gain.exponentialRampToValueAtTime(0.0001, t1);
-
-                osc.connect(g);
-                g.connect(ctx.destination);
-
-                osc.start(t0);
-                osc.stop(t1 + 0.02);
-
-                activeAudioNodes.push(osc);
-                activeAudioNodes.push(g);
-
-                setTimeout(() => {
-                    try { osc.disconnect(); } catch { }
-                    try { g.disconnect(); } catch { }
-                    activeAudioNodes = activeAudioNodes.filter(n => n !== osc && n !== g);
-                }, durationMs + 120);
-            }
-
-            function beepCountdownTick() {
-                playTone({ freq: 880, durationMs: 95, gain: 0.06, type: "sine", attackMs: 6, releaseMs: 55 });
-            }
-
-            function startAlarm5s() {
-                stopAllAudioNow();
-
-                const ctx = ensureAudio();
-                if (!ctx) return;
-
-                const pattern = [
-                    { f: 659, d: 140 },
-                    { f: 880, d: 160 },
-                    { f: 988, d: 180 },
-                ];
-
-                let i = 0;
-                const start = Date.now();
-                const maxMs = 5000;
-
-                function step() {
-                    const elapsed = Date.now() - start;
-                    if (elapsed >= maxMs) return;
-
-                    const note = pattern[i % pattern.length];
-                    playTone({ freq: note.f, durationMs: note.d, gain: 0.085, type: "triangle", attackMs: 10, releaseMs: 90 });
-
-                    i++;
-                    alarmTimerId = setTimeout(step, 260);
-                }
-
-                step();
-            }
-
-            function stopAlarm() {
-                stopAllAudioNow();
-            }
-
-            let overlayActive = false;
-            let lastOverlaySecond = null;
-
-            function showCountdownSeconds(sec) {
-                countdownNum.textContent = String(sec);
-                countdownOverlay.classList.add("show");
-                countdownOverlay.setAttribute("aria-hidden", "false");
-            }
-
-            function hideCountdown() {
-                countdownOverlay.classList.remove("show");
-                countdownOverlay.setAttribute("aria-hidden", "true");
-            }
-
-            function resetFinalCountdownState() {
-                overlayActive = false;
-                lastOverlaySecond = null;
-                hideCountdown();
-            }
-
-            function updateFinalCountdown(msLeft) {
-                const secLeft = Math.ceil(msLeft / 1000);
-
-                if (secLeft >= 1 && secLeft <= 10) {
-                    overlayActive = true;
-                    showCountdownSeconds(secLeft);
-
-                    if (lastOverlaySecond !== secLeft) {
-                        lastOverlaySecond = secLeft;
-                        beepCountdownTick();
-                    }
-                } else {
-                    if (overlayActive) resetFinalCountdownState();
-                }
-            }
-
-            // =======================
-            // Tabs responsivas (Config)
-            // =======================
-            function initConfigTabs() {
-                const tabBtns = Array.from(document.querySelectorAll("#leftCard .tabBtn"));
-                const panes = Array.from(document.querySelectorAll("#leftCard .cfgPane"));
-                const hint = document.getElementById("cfgHint");
-
-                if (!tabBtns.length || !panes.length) return;
-
-                function activate(tab) {
-                    tabBtns.forEach(b => b.classList.toggle("active", b.dataset.tab === tab));
-                    panes.forEach(p => p.classList.toggle("active", p.dataset.pane === tab));
-                    if (hint) {
-                        hint.textContent = tab === "meta" ? "Meta" : tab === "pdf" ? "PDF/Manual" : "Log";
-                    }
-                }
-
-                tabBtns.forEach(btn => btn.addEventListener("click", () => activate(btn.dataset.tab)));
-
-                const mq = window.matchMedia("(max-width: 1500px) and (min-width: 1121px)");
-                function sync() {
-                    if (mq.matches) {
-                        const anyActive = panes.some(p => p.classList.contains("active"));
-                        if (!anyActive) activate("meta");
-                    } else {
-                        panes.forEach(p => p.classList.add("active"));
-                        tabBtns.forEach(b => b.classList.remove("active"));
-                        const first = tabBtns[0];
-                        if (first) first.classList.add("active");
-                        if (hint) hint.textContent = "Configuração";
-                    }
-                }
-                if (mq.addEventListener) mq.addEventListener("change", sync);
-                else mq.addListener(sync);
-                sync();
-            }
-
-            // =======================
-            // Presets
-            // =======================
-            function applyPreset(val) {
-                if (val === "meta3m") {
-                    goalTitle.value = "META 3 MILHÕES";
-                    goalValue.value = 3000000;
-                    metaModePill.textContent = "preset";
-                } else if (val === "metarelampago") {
-                    goalTitle.value = "META RELÂMPAGO";
-                    goalValue.value = 300000;
-                    metaModePill.textContent = "preset";
-                } else {
-                    metaModePill.textContent = "personalizada";
-                }
-            }
-
-            goalPreset.addEventListener("change", () => applyPreset(goalPreset.value));
-
-            // =======================
-            // Render (UI)
-            // =======================
-            let timerTickId = null;
-            let endedAlarmFired = false;
-
-            function render() {
-                document.body.classList.toggle("telao", !!state.telao);
-                btnTelao.classList.toggle("primary", !!state.telao);
-
-                if (btnTelao) {
-                    btnTelao.setAttribute('aria-pressed', !!state.telao ? 'true' : 'false');
-                    btnTelao.title = state.telao ? 'Sair do modo telão' : 'Entrar no modo telão';
-                }
-                const tt = document.querySelector('#btnTelao .btnTooltip');
-                if (tt) tt.textContent = state.telao ? 'Sair do modo telão' : 'Entrar no modo telão';
-
-                goalTitle.value = state.goalTitle ?? goalTitle.value;
-                goalValue.value = state.goalValue ?? goalValue.value;
-                soldNow.value = state.soldManual ?? 0;
-
-                if (state.goalStart) {
-                    const d = new Date(state.goalStart);
-                    goalStartDT.value = d.toISOString().slice(0, 16);
-                } else goalStartDT.value = "";
-
-                if (state.goalEnd) {
-                    const d = new Date(state.goalEnd);
-                    goalEndDT.value = d.toISOString().slice(0, 16);
-                } else goalEndDT.value = "";
-
-                const now = Date.now();
-                let pillTxt = "⏱️ sem meta";
-                let pillCls = "pill warn";
-
-                if (state.goalEnd) {
-                    const s = state.goalStart ? new Date(state.goalStart).getTime() : now;
-                    const e = new Date(state.goalEnd).getTime();
-
-                    const startLabel = state.goalStart ? new Date(state.goalStart) : null;
-                    const endLabel = new Date(state.goalEnd);
-
-                    rangePill.textContent = `📅 ${formatDT(startLabel || new Date())} → ${formatDT(endLabel)}`;
-
-                    if (now < s) {
-                        pillTxt = "⏳ aguardando início";
-                        pillCls = "pill warn";
-                    } else if (now >= s && now < e) {
-                        pillTxt = `🪖 ativa`;
-                        pillCls = "pill ok";
-                    } else {
-                        pillTxt = "⚠️ encerrada";
-                        pillCls = "pill warn";
-                    }
-                } else {
-                    rangePill.textContent = "📅 —";
-                }
-
-                statusPill.className = pillCls;
-                statusPill.textContent = pillTxt;
-
-                const total = (state.rows || []).reduce((a, r) => a + (Number(r.sales) || 0), 0);
-                const metaMom = Number(state.goalValue) || 0;
-                const p = metaMom > 0 ? (total / metaMom) * 100 : 0;
-                soldKpi.textContent = brl(total);
-                pctKpi.textContent = metaMom > 0 ? `${p.toFixed(1)}% da meta (${brl(metaMom)})` : "Defina a meta do momento";
-                bar.style.width = `${clamp(p, 0, 100)}%`;
-
-                sourceKpi.textContent = state.source === "pdf" ? "📄 pdf" : state.source === "manual" ? "📄 manual" : "📄 base";
-                sourceKpi.className = `pill mono ${state.source === "pdf" ? "ok" : "warn"}`;
-
-                updatedKpi.textContent = state.lastUpdated ? `⏱️ ${new Date(state.lastUpdated).toLocaleTimeString()}` : "—";
-                startHintPill.textContent = state.goalStart ? `⏳ começa ${new Date(state.goalStart).toLocaleTimeString()}` : "⏳ começa agora";
-
-                const sorted = [...(state.rows || [])].sort((a, b) => (b.sales || 0) - (a.sales || 0));
-                const filterText = (state.nameFilter || "").trim().toLowerCase();
-                let countMet = 0;
-                let countNotFoundOrZero = 0;
-
-                const filteredRows = sorted.filter(r => {
-                    if (!filterText) return true;
-                    const hay = (`${r.rca || ''} ${r.name || ''}`).toLowerCase();
-                    return hay.indexOf(filterText) !== -1;
+                    state.goalTitle = title;
+                    state.goalValue = val;
+                    state.goalStart = start.toISOString();
+                    state.goalEnd = endD.toISOString();
+                    saveState();
+                    render();
+                    startTimerLoop();
+                    log(`Meta ativada: "${state.goalTitle}" (${brl(state.goalValue)})`);
                 });
 
-                tbody.innerHTML = filteredRows.map(r => {
-                    const pm = pctOver(r.sales, r.meta || 0);
-                    const reachedMeta = (Number(r.sales) || 0) >= (Number(r.meta) || 0) && (Number(r.meta) || 0) > 0;
-                    const notFound = (state.source === "pdf" && r.found === false);
-
-                    if (reachedMeta) countMet++;
-                    if (notFound || (Number(r.sales) || 0) === 0) countNotFoundOrZero++;
-
-                    const rowClass = notFound ? 'not-found' : (reachedMeta ? 'met' : '');
-                    const checkHtml = reachedMeta && !notFound ? `<span class="metIcon">✅</span>&nbsp;` : '';
-
-                    return `<tr class="${rowClass}">
-              <td>${esc(r.rca)}</td>
-              <td>${checkHtml}${esc(r.name)}</td>
-              <td>${brl(r.sales)}</td>
-              <td>${pm.toFixed(1)}%</td>
-              <td>${Number(r.cliPosit || 0)}</td>
-              <td>${Number(r.mix || 0)}</td>
-              <td>${brl(r.meta || 0)}</td>
-            </tr>`;
-                }).join("");
-
-                const summaryMetEl = document.getElementById('summaryMet');
-                const summaryNotFoundEl = document.getElementById('summaryNotFound');
-                if (summaryMetEl) summaryMetEl.textContent = `✅ Meta Batida: ${countMet}`;
-                if (summaryNotFoundEl) summaryNotFoundEl.textContent = `❌ Não encontrados/sem venda: ${countNotFoundOrZero}`;
-
-                renderLeaders(filteredRows);
-
-                integritySub.textContent = pdfOk
-                    ? "Importe PDF para atualizar. Countdown 10s + alarme suave no fim."
-                    : "PDF.js OFF. Você pode usar manual. Countdown 10s + alarme suave no fim.";
-            }
-
-            function leaderCard(title, icon, rows, metricLabel, metricFn) {
-                const r1 = rows[0] || null;
-                const r2 = rows[1] || null;
-                const r3 = rows[2] || null;
-                const r4 = rows[3] || null;
-
-                function podHTML(rank, r, extraCls) {
-                    const cls = `pod ${extraCls || ""}`.trim();
-                    if (!r) {
-                        return `<div class="${cls}">
-              <div class="rankBadge">${rank}</div>
-              <div class="podName muted mono">—</div>
-              <div class="podSub"><span class="mono">RCA —</span></div>
-              <div class="podMetric"><span class="muted">—</span><small>${esc(metricLabel)}</small></div>
-            </div>`;
-                    }
-
-                    const trophyHtml = extraCls && extraCls.indexOf('top1') !== -1 ? `
-              <span class="trophy" aria-hidden="true">
-                <svg width="28" height="28" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-                  <path d="M8 2h8v2a3 3 0 0 1-3 3H11A3 3 0 0 1 8 4V2z" fill="currentColor" opacity="0.95"/>
-                  <path d="M6 6H4a2 2 0 0 0-2 2v1a5 5 0 0 0 4 4.9V16a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2v-2.1A5 5 0 0 0 22 9V8a2 2 0 0 0-2-2h-2" stroke="currentColor" stroke-width="0.8" stroke-linecap="round" stroke-linejoin="round"/>
-                  <path d="M9 20h6v2H9v-2z" fill="currentColor" opacity="0.95"/>
-                  <circle cx="18.5" cy="7.5" r="1.2" fill="currentColor" opacity="0.9"/>
-                </svg>
-              </span>` : '';
-
-                    return `<div class="${cls}">
-              <div class="rankBadge">${rank}</div>
-              <div class="podName">${trophyHtml}${esc(r.name)}</div>
-              <div class="podSub"><span class="mono">RCA ${esc(r.rca)}</span></div>
-              <div class="podMetric"><span>${esc(metricFn(r))}</span><small>${esc(metricLabel)}</small></div>
-            </div>`;
-                }
-
-                return `
-          <div class="leaderCard">
-            <div class="leaderCardHead">
-              <div class="tag">
-                <span class="icon">${icon}</span>
-                <span>${title}</span>
-              </div>
-              <span class="smallPill">TOP 4</span>
-            </div>
-            <div class="podium">
-              ${podHTML(2, r2, "")}
-              ${podHTML(1, r1, "top1")}
-              ${podHTML(3, r3, "")}
-            </div>
-            <div style="padding:0 14px 14px">
-              <div class="pod" style="min-height:auto">
-                <div class="rankBadge">4</div>
-                <div class="podName">${r4 ? esc(r4.name) : '<span class="muted">—</span>'}</div>
-                <div class="podSub">${r4 ? `<span class="mono">RCA ${esc(r4.rca)}</span>` : '<span class="mono">RCA —</span>'}</div>
-                <div class="podMetric">
-                  <span>${r4 ? esc(metricFn(r4)) : '<span class="muted">—</span>'}</span>
-                  <small>${esc(metricLabel)}</small>
-                </div>
-              </div>
-            </div>
-          </div>
-        `;
-            }
-
-            function renderLeaders(filteredRows) {
-                const sourceRows = Array.isArray(filteredRows) ? filteredRows : (state.rows || []);
-                function top4ByFn(fn) {
-                    return [...sourceRows].sort((a, b) => fn(b) - fn(a)).slice(0, 4);
-                }
-
-                const volume = top4ByFn(r => Number(r.sales) || 0);
-                const pct = top4ByFn(r => pctOver(r.sales, r.meta || 0));
-                const pos = top4ByFn(r => Number(r.cliPosit) || 0);
-                const mix = top4ByFn(r => Number(r.mix) || 0);
-
-                leadersGrid.innerHTML = [
-                    leaderCard("Maior volume de vendas", "💥", volume, "Vl venda", r => brl(r.sales)),
-                    leaderCard("Maior % sobre meta", "🎯", pct, "% meta", r => `${pctOver(r.sales, r.meta || 0).toFixed(1)}%`),
-                    leaderCard("Maior positivação", "🪖", pos, "Cli.posit", r => String(Number(r.cliPosit || 0))),
-                    leaderCard("Maior mix", "🧨", mix, "Mix", r => String(Number(r.mix || 0))),
-                ].join("");
-            }
-
-            // =======================
-            // Timer loop (meta + countdown + alarme) — AJUSTADO
-            // =======================
-            function startTimerLoop() {
-                if (timerTickId) clearInterval(timerTickId);
-                timerTickId = setInterval(() => {
-                    const now = Date.now();
-
-                    if (!state.goalEnd) {
-                        timeKpi.textContent = "00:00:00";
-                        timeSub.textContent = "Sem meta ativa";
-                        startMini.textContent = "—";
-                        endMini.textContent = "—";
-                        resetFinalCountdownState();
-                        endedAlarmFired = false;
-                        return;
-                    }
-
-                    const endMs = new Date(state.goalEnd).getTime();
-                    const startMs = state.goalStart ? new Date(state.goalStart).getTime() : now;
-
-                    startMini.textContent = state.goalStart ? new Date(state.goalStart).toLocaleString("pt-BR", { hour12: false }) : "agora";
-                    endMini.textContent = new Date(state.goalEnd).toLocaleString("pt-BR", { hour12: false });
-
-                    if (now < startMs) {
-                        const msToStart = startMs - now;
-                        timeKpi.textContent = formatTimeLeft(msToStart);
-                        timeSub.textContent = "Aguardando início";
-                        resetFinalCountdownState();
-                        endedAlarmFired = false;
-                        return;
-                    }
-
-                    const msLeft = endMs - now;
-                    if (msLeft > 0) {
-                        timeKpi.textContent = formatTimeLeft(msLeft);
-                        timeSub.textContent = "Tempo restante";
-                        endedAlarmFired = false;
-
-                        // ✅ 10s finais estáveis (sem loop extra)
-                        updateFinalCountdown(msLeft);
-
-                    } else {
-                        timeKpi.textContent = "00:00:00";
-                        timeSub.textContent = "Encerrado";
-                        resetFinalCountdownState();
-
-                        if (!endedAlarmFired) {
-                            endedAlarmFired = true;
-                            startAlarm5s();
-                            log("⏰ Meta encerrada: alarme suave por ~5s.");
-                        }
-                    }
-
-                }, 200);
-            }
-
-            // =======================
-            // Actions
-            // =======================
-            btnStart.addEventListener("click", () => {
-                ensureAudio();
-
-                const title = goalTitle.value.trim() || "META";
-                const val = parseNum(goalValue.value);
-
-                const startD = parseLocalDT(goalStartDT.value);
-                const endD = parseLocalDT(goalEndDT.value);
-
-                if (!endD) {
-                    alert("O FIM (data e hora) é obrigatório.");
-                    return;
-                }
-
-                const start = startD ? startD : new Date();
-
-                if (endD.getTime() <= start.getTime()) {
-                    alert("O FIM precisa ser maior que o INÍCIO.");
-                    return;
-                }
-
-                state.goalTitle = title;
-                state.goalValue = val;
-                state.goalStart = start.toISOString();
-                state.goalEnd = endD.toISOString();
-
-                saveState();
-                render();
-                startTimerLoop();
-
-                log(`Meta ativada: "${state.goalTitle}" (${brl(state.goalValue)})`);
-            });
-
-            soldNow.addEventListener("input", () => {
-                state.soldManual = parseNum(soldNow.value);
-                state.source = "manual";
-                saveState();
-                render();
-            });
-
-            btnParse.addEventListener("click", () => {
-                const parsed = parseManual(rawData.value);
-                state.rows = mergeIntoBase(parsed);
-                state.source = "manual";
-                state.lastUpdated = new Date().toISOString();
-                saveState();
-                render();
-                log(`Manual: atualizou ${parsed.length} RCAs; base mantida (${state.rows.length}).`);
-            });
-
-            btnReset.addEventListener("click", () => {
-                state = { ...defaultState, rows: baseRows(), telao: state.telao };
-                saveState();
-                rawData.value = "";
-                logBox.value = "";
-                render();
-                startTimerLoop();
-                log("Reset concluído. Base restaurada.");
-            });
-
-            btnTelao.addEventListener("click", () => {
-                state.telao = !state.telao;
-                saveState();
-                render();
-            });
-
-            btnStopAlarm.addEventListener("click", () => {
-                stopAlarm();
-                log("Alarme interrompido.");
-            });
-
-            btnClearLog.addEventListener("click", () => {
-                logBox.value = "";
-                log("Log limpo.");
-            });
-
-            btnCopyLog.addEventListener("click", async () => {
-                try {
-                    await navigator.clipboard.writeText(logBox.value || "");
-                    log("Log copiado para a área de transferência.");
-                } catch {
-                    alert("Não foi possível copiar automaticamente. Selecione e copie manualmente.");
-                }
-            });
-
-            function parseManual(text) {
-                const lines = String(text || "").split(/\r?\n/).map(l => l.trim()).filter(Boolean);
-                const out = [];
-                for (const line of lines) {
-                    const parts = line.split(";").map(p => p.trim());
-                    if (parts.length < 2) continue;
-
-                    const rca = String(parts[0] || "").replace(/\D/g, "");
-                    if (!rca) continue;
-
-                    out.push({
-                        rca,
-                        sales: parseNum(parts[1] ?? 0),
-                        cliPosit: parseInt(parts[2] ?? "0", 10) || 0,
-                        mix: parseInt(parts[3] ?? "0", 10) || 0,
-                        name: NOME_PADRAO.get(rca) || ""
-                    });
-                }
-                return out;
-            }
-
-            // =======================
-            // PDF Import
-            // =======================
-            pdfFile.addEventListener("change", async (e) => {
-                const file = e.target.files?.[0];
-                if (!file) return;
-
-                if (!window.pdfjsLib) {
-                    alert("PDF.js não carregou. Coloque pdf.min.js e pdf.worker.min.js na mesma pasta.");
-                    e.target.value = "";
-                    return;
-                }
-
-                ensureAudio();
-
-                try {
-                    log(`Lendo PDF: ${file.name}`);
-                    const buf = await file.arrayBuffer();
-                    const pdf = await window.pdfjsLib.getDocument({ data: buf }).promise;
-
-                    let fullText = "";
-                    for (let p = 1; p <= pdf.numPages; p++) {
-                        const page = await pdf.getPage(p);
-                        const tc = await page.getTextContent();
-                        let pageText = "";
-                        for (const it of tc.items) {
-                            pageText += (it.str || "") + (it.hasEOL ? "\n" : " ");
-                        }
-                        fullText += "\n" + pageText;
-                    }
-
-                    const extracted = parseWinthor315(fullText);
-
-                    if (extracted.length) {
-                        state.rows = mergeIntoBase(extracted);
-                        state.source = "pdf";
-                        state.lastUpdated = new Date().toISOString();
-
-                        rawData.value = extracted
-                            .map(r => `${r.rca}; ${String(r.sales).replace(".", ",")}; ${r.cliPosit}; ${r.mix}`)
-                            .join("\n");
-
-                        saveState();
-                        render();
-                        log(`PDF OK: atualizou ${extracted.length} RCAs; base mantida (${state.rows.length}).`);
-                    } else {
-                        alert("Não consegui identificar linhas no padrão do relatório 315.");
-                        log("Falha: parser não encontrou linhas.");
-                    }
-                } catch (err) {
-                    console.error(err);
-                    alert("Erro ao ler o PDF. Veja o console.");
-                    log("Erro ao ler PDF: " + (err?.message || err));
-                } finally {
-                    e.target.value = "";
-                }
-            });
-
-            function parseWinthor315(text) {
-                const out = [];
-                const lines = String(text || "").split(/\r?\n/).map(l => l.replace(/\s+/g, " ").trim()).filter(Boolean);
-
-                const reA = /^(\d{1,6})\s+([A-ZÀ-Ü0-9.\-\s]{3,80}?)\s+(\d+)\s+(\d+)\s+(\d+)\s+([\d.,]+)\s+(\d+)\s+(\d+)\s+([\d.,]+)\s+([\d.,]+)/;
-                const reB = /^([A-ZÀ-Ü0-9.\-\s]{3,80}?)\s+(\d+)\s+(\d+)\s+(\d+)\s+(\d+)\s+(\d{1,6})\s+([\d.,]+)/;
-
-                for (const L of lines) {
-                    if (/^315\b/i.test(L)) continue;
-                    if (/^Per[ií]odo\b/i.test(L)) continue;
-                    if (/^C[oó]digo\s+Rca\b/i.test(L)) continue;
-                    if (/^P[aá]gina\b/i.test(L)) continue;
-                    if (/^Total do Supervisor\b/i.test(L)) break;
-                    if (/^Estat[ií]stica\b/i.test(L)) break;
-
-                    let m = L.match(reA);
-                    if (m) {
-                        const rca = String(parseInt(m[1], 10) || "");
-                        const name = m[2].trim();
-                        const cliPosit = parseInt(m[4], 10) || 0;
-                        const mix = parseInt(m[8], 10) || 0;
-                        const sales = parseNum(m[10]);
-                        if (rca) out.push({ rca, name, cliPosit, mix, sales });
-                        continue;
-                    }
-
-                    m = L.match(reB);
-                    if (m) {
-                        out.push({
-                            name: m[1].trim(),
-                            cliPosit: parseInt(m[3], 10) || 0,
-                            mix: parseInt(m[4], 10) || 0,
-                            rca: String(parseInt(m[6], 10) || ""),
-                            sales: parseNum(m[7])
-                        });
-                    }
-                }
-
-                const dedup = new Map();
-                for (const r of out) dedup.set(r.rca, r);
-                return Array.from(dedup.values());
+                btnReset.addEventListener("click", () => {
+                    state = { ...defaultState, rows: baseRows(), telao: state.telao };
+                    saveState();
+                    if (logBox) logBox.value = "";
+                    render();
+                    startTimerLoop();
+                    log("Reset concluído. Base restaurada.");
+                });
+            } else {
+                // Produção: evita qualquer tentativa (caso alguém force via DevTools)
+                btnStart.addEventListener("click", (e) => { e.preventDefault(); log("Produção: edição bloqueada."); });
+                btnReset.addEventListener("click", (e) => { e.preventDefault(); log("Produção: reset bloqueado."); });
             }
 
             // =======================
             // Init
             // =======================
             applyPreset(goalPreset.value);
-            initConfigTabs();
-
-            if (typeof state.telao === "boolean") {
-                document.body.classList.toggle("telao", state.telao);
-            }
+            if (typeof state.telao === "boolean") document.body.classList.toggle("telao", state.telao);
 
             render();
             startTimerLoop();
+            loadServerLatest(); // ✅ pega latest.json e atualiza tudo
 
-            log("Sistema pronto. Leitura de PDF: " + (window.pdfjsLib ? "OK" : "INDISPONÍVEL"));
-            if (!window.pdfjsLib) log("Para file://: coloque pdf.min.js e pdf.worker.min.js na mesma pasta do HTML.");
+            log(`Sistema pronto. Modo: ${PROD ? "PRODUÇÃO" : "DEV"} | Fonte: ${pdfSource}`);
 
-            // --- Logo upload handling ---
+            // --- Logo upload handling (continua público) ---
             const logoInput = document.getElementById('logoInput');
             const logoContainer = document.querySelector('.brand .logo');
             const campaignLogo = document.getElementById('campaignLogo');
@@ -2477,14 +2021,6 @@
             if (logoContainer && logoInput && campaignLogo) {
                 try { logoContainer.style.cursor = 'pointer'; } catch { }
                 logoContainer.addEventListener('click', () => logoInput.click());
-
-                logoContainer.addEventListener('dragover', (e) => { e.preventDefault(); logoContainer.classList.add('dragover'); });
-                logoContainer.addEventListener('dragleave', (e) => { e.preventDefault(); logoContainer.classList.remove('dragover'); });
-                logoContainer.addEventListener('drop', (e) => {
-                    e.preventDefault(); logoContainer.classList.remove('dragover');
-                    const f = e.dataTransfer?.files?.[0];
-                    if (f) handleLogoFile(f, campaignLogo, logoInput);
-                });
 
                 logoInput.addEventListener('change', async (e) => {
                     const f = e.target.files?.[0];
@@ -2500,10 +2036,6 @@
                         imgEl.src = processed;
                         try { localStorage.setItem('rover_logo_dataurl_v1', processed); } catch { }
                         if (inputEl) inputEl.value = '';
-                    } else {
-                        const url = URL.createObjectURL(file);
-                        imgEl.src = url;
-                        try { localStorage.removeItem('rover_logo_dataurl_v1'); } catch { }
                     }
                 } catch (err) {
                     console.error('Logo processing failed', err);
@@ -2521,13 +2053,12 @@
                             canvas.width = Math.round(img.width * ratio);
                             canvas.height = Math.round(img.height * ratio);
                             const ctx = canvas.getContext('2d');
-                            ctx.fillStyle = 'rgba(0,0,0,0)';
                             ctx.clearRect(0, 0, canvas.width, canvas.height);
                             ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
                             try {
                                 const dataUrl = canvas.toDataURL('image/jpeg', quality);
                                 resolve(dataUrl);
-                            } catch (e) { resolve(null); }
+                            } catch { resolve(null); }
                         };
                         img.onerror = () => resolve(null);
                         img.src = reader.result;
@@ -2539,122 +2070,5 @@
         }
     </script>
 </body>
-
-<!-- ✅ COLE ESTE BLOCO NO SEU <style> (no final, para sobrescrever) -->
-<style>
-    /* =========================================================
-   FIX RESPONSIVIDADE — "Líderes do Momento" (TELÃO DESATIVADO)
-   ========================================================= */
-
-    body:not(.telao) .leadersGrid {
-        grid-template-columns: repeat(2, minmax(320px, 1fr));
-        gap: 12px;
-    }
-
-    @media (max-width: 1280px) {
-        body:not(.telao) .leadersGrid {
-            grid-template-columns: 1fr;
-        }
-    }
-
-    body:not(.telao) .podium {
-        display: grid;
-        grid-template-columns: repeat(3, minmax(0, 1fr));
-        gap: 10px;
-        align-items: stretch;
-    }
-
-    @media (max-width: 980px) {
-        body:not(.telao) .podium {
-            grid-template-columns: repeat(2, minmax(0, 1fr));
-            align-items: stretch;
-        }
-    }
-
-    @media (max-width: 560px) {
-        body:not(.telao) .podium {
-            grid-template-columns: 1fr;
-        }
-    }
-
-    @media (max-width: 980px) {
-        body:not(.telao) .pod.top1 {
-            grid-column: 1 / -1;
-            min-height: 96px;
-        }
-    }
-
-    body:not(.telao) .podName {
-        margin-right: 44px;
-        overflow: hidden;
-        text-overflow: ellipsis;
-        white-space: nowrap;
-    }
-
-    @media (max-width: 560px) {
-        body:not(.telao) .podName {
-            white-space: normal;
-            display: -webkit-box;
-            -webkit-line-clamp: 2;
-            -webkit-box-orient: vertical;
-            margin-right: 0;
-            padding-right: 44px;
-        }
-    }
-
-    body:not(.telao) .rankBadge {
-        width: 34px;
-        height: 34px;
-        flex: 0 0 auto;
-    }
-
-    body:not(.telao) .podMetric {
-        gap: 10px;
-    }
-
-    body:not(.telao) .podMetric span {
-        overflow: hidden;
-        text-overflow: ellipsis;
-        white-space: nowrap;
-        min-width: 0;
-    }
-
-    @media (max-width: 980px) {
-        body:not(.telao) .pod {
-            padding: 10px;
-            min-height: 78px;
-        }
-
-        body:not(.telao) .pod.top1 {
-            min-height: 90px;
-        }
-
-        body:not(.telao) .leaderCardHead {
-            padding: 10px 12px;
-        }
-
-        body:not(.telao) .leaderCardHead .tag {
-            font-size: 11px;
-            letter-spacing: .45px;
-        }
-    }
-
-    body:not(.telao) .leaderCard>div[style*="padding:0 14px 14px"] {
-        padding: 0 12px 12px !important;
-    }
-
-    body:not(.telao) .leaderCard,
-    body:not(.telao) .pod {
-        min-width: 0;
-    }
-
-    @media (max-width: 980px) {
-        body:not(.telao) .leaderCard {
-            background:
-                radial-gradient(420px 200px at 20% 10%, rgba(255, 196, 110, .11), transparent 65%),
-                linear-gradient(180deg, rgba(0, 0, 0, .20), rgba(0, 0, 0, .10));
-        }
-    }
-</style>
 
 </html>
