@@ -664,11 +664,19 @@
             display: inline-block;
         }
 
+        .tableReveal {
+            display: inline-block;
+        }
+
         .revealSales .salesReveal {
             animation: sales-reveal 650ms ease;
         }
 
         .revealLeaders .leaderReveal {
+            animation: sales-reveal 650ms ease;
+        }
+
+        .revealTable .tableReveal {
             animation: sales-reveal 650ms ease;
         }
 
@@ -1519,6 +1527,7 @@
                 <button class="btn btnHideLeader" data-leader="pct">🔒 % Meta</button>
                 <button class="btn btnHideLeader" data-leader="posit">🔒 Positivação</button>
                 <button class="btn btnHideLeader" data-leader="mix">🔒 Mix</button>
+                <button class="btn btnHideLeader" id="btnHideTable" data-leader="table">🔒 Tabela</button>
                 <button class="btn primary mono" id="btnReset">RESETAR DADOS</button>
             </div>
         </div>
@@ -1926,7 +1935,8 @@
                 telao: false,
                 prevRanks: null,
                 hideSales: false,
-                hideLeader: { volume: false, pct: false, posit: false, mix: false }
+                hideLeader: { volume: false, pct: false, posit: false, mix: false },
+                hideTable: false
             };
 
             let state;
@@ -2357,6 +2367,10 @@
                 const hl = state.hideLeader || {};
                 btnHideLeaderAll.forEach(btn => {
                     const key = btn.dataset.leader;
+                    if (key === 'table') {
+                        btn.textContent = state.hideTable ? '👁️ Tabela' : '🔒 Tabela';
+                        return;
+                    }
                     const hidden = !!hl[key];
                     const labels = { volume: "Volume", pct: "% Meta", posit: "Positivação", mix: "Mix" };
                     btn.textContent = hidden ? `👁️ ${labels[key]}` : `🔒 ${labels[key]}`;
@@ -2469,14 +2483,22 @@
 
                     const salesText = state.hideSales ? "••••" : brl(r.sales);
                     const salesHtml = `<span class=\"salesReveal\">${salesText}</span>`;
+                    const ht = !!state.hideTable;
+                    const tName = ht ? '••••••' : esc(r.name);
+                    const tRca = ht ? '••••' : esc(r.rca);
+                    const tSales = ht ? '••••' : salesHtml;
+                    const tPct = ht ? '••••' : `${pm.toFixed(1)}%`;
+                    const tPosit = ht ? '••••' : String(Number(r.cliPosit || 0));
+                    const tMix = ht ? '••••' : String(Number(r.mix || 0));
+                    const tMeta = ht ? '••••' : brl(r.meta || 0);
                     return `<tr class="${rowClass}">
-          <td>${esc(r.rca)}</td>
-          <td>${rankHtml}${checkHtml}${esc(r.name)}</td>
-          <td>${salesHtml}</td>
-              <td>${pm.toFixed(1)}%</td>
-              <td>${Number(r.cliPosit || 0)}</td>
-              <td>${Number(r.mix || 0)}</td>
-              <td>${brl(r.meta || 0)}</td>
+          <td><span class="tableReveal">${tRca}</span></td>
+          <td>${rankHtml}${checkHtml}<span class="tableReveal">${tName}</span></td>
+          <td><span class="tableReveal">${tSales}</span></td>
+              <td><span class="tableReveal">${tPct}</span></td>
+              <td><span class="tableReveal">${tPosit}</span></td>
+              <td><span class="tableReveal">${tMix}</span></td>
+              <td><span class="tableReveal">${tMeta}</span></td>
             </tr>`;
                 }).join("");
 
@@ -2830,6 +2852,17 @@
             btnHideLeaderAll.forEach(btn => {
                 btn.addEventListener("click", () => {
                     const key = btn.dataset.leader;
+                    if (key === 'table') {
+                        const wasHidden = !!state.hideTable;
+                        state.hideTable = !wasHidden;
+                        saveState();
+                        render();
+                        if (wasHidden && !state.hideTable) {
+                            document.body.classList.add("revealTable");
+                            setTimeout(() => document.body.classList.remove("revealTable"), 700);
+                        }
+                        return;
+                    }
                     if (!state.hideLeader) state.hideLeader = {};
                     const wasHidden = !!state.hideLeader[key];
                     state.hideLeader[key] = !wasHidden;
