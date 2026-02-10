@@ -46,6 +46,7 @@
             font-family: "Abel", sans-serif;
             font-weight: 100;
             font-style: normal;
+            font-size: 16px;
             background:
                 radial-gradient(1200px 700px at 16% 12%, rgba(255, 196, 110, 0.12), transparent 60%),
                 radial-gradient(900px 600px at 86% 30%, rgba(0, 190, 130, 0.10), transparent 58%),
@@ -68,7 +69,7 @@
         .wrap {
             /* max-width: 1500px; */
             margin: 0 auto;
-            padding: 18px 18px 26px
+            padding: 22px 22px 30px
         }
 
         @media(max-width:900px) {
@@ -89,9 +90,6 @@
             background: linear-gradient(180deg, rgba(10, 14, 12, 0.55), rgba(8, 10, 9, 0.30));
             box-shadow: 0 10px 40px rgba(0, 0, 0, 0.6), inset 0 1px 0 rgba(255, 255, 255, 0.02);
             backdrop-filter: blur(8px) saturate(1.05);
-            position: sticky;
-            top: 12px;
-            z-index: 40;
             border-left: 6px solid rgb(253, 188, 90);
         }
 
@@ -629,27 +627,57 @@
             border-radius: 18px;
             border: 1px solid rgba(170, 210, 185, .14);
             background: linear-gradient(180deg, rgba(0, 0, 0, .18), rgba(0, 0, 0, .10));
-            padding: 14px;
+            padding: 18px;
             box-shadow: inset 0 0 0 1px rgba(255, 255, 255, .03);
         }
 
         .kpiLabel {
             color: rgba(236, 246, 239, .68);
-            font-size: 11px;
+            font-size: 13px;
             letter-spacing: .5px;
             text-transform: uppercase
         }
 
         .kpiValue {
-            font-size: 42px;
+            font-size: 64px;
             font-weight: 1000;
             letter-spacing: .6px;
             margin-top: 6px
         }
 
+        .kpiValue.glow {
+            text-shadow: 0 0 18px rgba(255, 196, 110, 0.35), 0 0 36px rgba(255, 140, 0, 0.25);
+        }
+
+        .salesReveal {
+            display: inline-block;
+        }
+
+        .revealSales .salesReveal {
+            animation: sales-reveal 650ms ease;
+        }
+
+        @keyframes sales-reveal {
+            0% {
+                opacity: 0;
+                transform: translateY(6px) scale(0.98);
+            }
+
+            100% {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+            }
+        }
+
+        @media(max-width:900px) {
+            .kpiValue {
+                font-size: 38px;
+            }
+        }
+
         .kpiSub {
             color: var(--muted);
-            font-size: 13px;
+            font-size: 15px;
             margin-top: 6px;
             line-height: 1.25
         }
@@ -685,7 +713,7 @@
 
         .leadersHeader h2 {
             margin: 0;
-            font-size: 16px;
+            font-size: 20px;
             font-weight: 950
         }
 
@@ -693,6 +721,39 @@
             display: grid;
             grid-template-columns: 1fr 1fr;
             gap: 12px;
+        }
+
+        /* update pulse animations */
+        .leadersGrid.pulse .leaderCard {
+            animation: leader-pop 420ms ease;
+        }
+
+        tbody.pulse tr {
+            animation: row-pop 320ms ease;
+        }
+
+        @keyframes leader-pop {
+            0% {
+                transform: translateY(4px) scale(0.985);
+                opacity: 0.7;
+            }
+
+            100% {
+                transform: translateY(0) scale(1);
+                opacity: 1;
+            }
+        }
+
+        @keyframes row-pop {
+            0% {
+                transform: translateY(3px);
+                opacity: 0.7;
+            }
+
+            100% {
+                transform: translateY(0);
+                opacity: 1;
+            }
         }
 
         @media(max-width:1200px) {
@@ -711,6 +772,29 @@
             overflow: hidden;
         }
 
+        .leaderCard.top1Changed {
+            animation: top1-flash 900ms ease;
+            border-color: rgba(255, 196, 110, 0.45);
+            box-shadow: 0 0 18px rgba(255, 196, 110, 0.25), inset 0 0 0 1px rgba(255, 255, 255, .04);
+        }
+
+        @keyframes top1-flash {
+            0% {
+                transform: scale(0.99);
+                filter: brightness(1.05);
+            }
+
+            50% {
+                transform: scale(1.01);
+                filter: brightness(1.2);
+            }
+
+            100% {
+                transform: scale(1);
+                filter: brightness(1);
+            }
+        }
+
         .leaderCardHead {
             padding: 12px 14px;
             display: flex;
@@ -720,6 +804,27 @@
             flex-wrap: wrap;
             border-bottom: 1px solid rgba(170, 210, 185, .10);
             position: relative;
+        }
+
+        .leaderMoreBtn {
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            background: rgba(0, 0, 0, 0.25);
+            color: var(--muted);
+            border-radius: 10px;
+            padding: 6px 10px;
+            font-size: 11px;
+            font-weight: 800;
+            letter-spacing: .4px;
+            cursor: pointer;
+            text-transform: uppercase;
+            z-index: 2;
+            pointer-events: auto;
+        }
+
+        .leaderMoreBtn:hover {
+            color: #fff;
+            border-color: rgba(255, 196, 110, 0.2);
+            box-shadow: 0 0 12px rgba(255, 196, 110, 0.12);
         }
 
         .leaderCardHead .tag {
@@ -746,6 +851,7 @@
             overflow: hidden;
             text-overflow: ellipsis;
             z-index: 1;
+            pointer-events: none;
         }
 
         .leaderCardHead .tag .icon {
@@ -797,6 +903,12 @@
                 width: 30px;
                 height: 30px;
             }
+
+            .leaderCardHead .tag .icon svg {
+                width: 22px;
+                height: 22px;
+                display: block;
+            }
         }
 
         .podium {
@@ -818,16 +930,16 @@
             border-radius: 16px;
             border: 1px solid rgba(170, 210, 185, .12);
             background: rgba(0, 0, 0, .18);
-            padding: 12px;
+            padding: 14px;
             position: relative;
-            min-height: 86px;
+            min-height: 100px;
             box-shadow: inset 0 0 0 1px rgba(255, 255, 255, .02);
         }
 
         .pod.top1 {
             border-color: rgba(255, 196, 110, .38);
             background: linear-gradient(180deg, rgba(255, 196, 110, .12), rgba(0, 0, 0, .18));
-            min-height: 108px;
+            min-height: 122px;
             box-shadow: 0 18px 48px rgba(0, 0, 0, .55), inset 0 0 0 1px rgba(255, 255, 255, .03);
         }
 
@@ -856,7 +968,7 @@
             letter-spacing: .2px;
             margin-right: 44px;
             line-height: 1.15;
-            font-size: 13px;
+            font-size: 15px;
         }
 
         /* Trophy animation for first place */
@@ -926,7 +1038,7 @@
 
         .podSub {
             color: var(--muted);
-            font-size: 11px;
+            font-size: 12px;
             margin-top: 6px;
             display: flex;
             gap: 10px;
@@ -936,7 +1048,7 @@
 
         .podMetric {
             margin-top: 10px;
-            font-size: 13px;
+            font-size: 15px;
             font-weight: 950;
             letter-spacing: .2px;
             display: flex;
@@ -965,12 +1077,12 @@
         table {
             width: 100%;
             border-collapse: collapse;
-            font-size: 13px
+            font-size: 15px
         }
 
         th,
         td {
-            padding: 10px 10px;
+            padding: 12px 12px;
             border-bottom: 1px solid rgba(170, 210, 185, 0.10);
             text-align: left;
             white-space: nowrap
@@ -979,13 +1091,166 @@
         thead th {
             background: rgba(0, 0, 0, .22);
             color: rgba(236, 246, 239, .78);
-            font-size: 11px;
+            font-size: 12px;
             letter-spacing: .6px;
             text-transform: uppercase;
         }
 
         tbody tr:hover td {
             background: rgba(255, 196, 110, .04)
+        }
+
+        .rankDelta {
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+            padding: 2px 6px;
+            border-radius: 999px;
+            font-size: 11px;
+            font-weight: 800;
+            letter-spacing: .4px;
+            margin-right: 6px;
+            background: rgba(255, 255, 255, 0.06);
+            color: var(--muted);
+        }
+
+        /* Modal */
+        .modalOverlay {
+            position: fixed;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.65);
+            display: none;
+            align-items: center;
+            justify-content: center;
+            z-index: 200;
+            padding: 16px;
+        }
+
+        .modalOverlay.show {
+            display: flex;
+        }
+
+        .modalCard {
+            width: min(820px, 92vw);
+            max-height: 84vh;
+            overflow: hidden;
+            border-radius: 16px;
+            border: 1px solid rgba(170, 210, 185, .18);
+            background: rgba(8, 10, 9, 0.95);
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.6);
+            display: flex;
+            flex-direction: column;
+        }
+
+        .modalHeader {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 10px;
+            padding: 14px 16px;
+            border-bottom: 1px solid rgba(170, 210, 185, 0.12);
+        }
+
+        .modalTitle {
+            font-weight: 900;
+            font-size: 16px;
+        }
+
+        .modalSubtitle {
+            color: var(--muted);
+            font-size: 12px;
+        }
+
+        .modalClose {
+            width: 34px;
+            height: 34px;
+            border-radius: 10px;
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            background: rgba(0, 0, 0, 0.3);
+            color: #fff;
+            font-size: 18px;
+            cursor: pointer;
+        }
+
+        .modalBody {
+            padding: 14px 16px 18px;
+            overflow: auto;
+        }
+
+        .modalList {
+            display: grid;
+            gap: 8px;
+        }
+
+        .modalRow {
+            display: grid;
+            grid-template-columns: 40px 1fr auto;
+            gap: 10px;
+            align-items: center;
+            padding: 8px 10px;
+            border-radius: 10px;
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(170, 210, 185, 0.08);
+        }
+
+        .modalRow .pos {
+            font-weight: 900;
+            opacity: 0.85;
+        }
+
+        .modalRow .name {
+            font-weight: 800;
+        }
+
+        .modalRow .metric {
+            font-weight: 900;
+            color: rgba(255, 196, 110, 0.9);
+        }
+
+        .rankDelta.up {
+            color: rgba(0, 220, 150, 0.9);
+            background: rgba(0, 190, 130, 0.12);
+            animation: rank-up-pop 600ms ease;
+        }
+
+        .rankDelta.down {
+            color: rgba(255, 120, 80, 0.95);
+            background: rgba(255, 90, 20, 0.12);
+            animation: rank-down-pop 600ms ease;
+        }
+
+        @keyframes rank-up-pop {
+            0% {
+                transform: translateY(2px) scale(0.95);
+                box-shadow: 0 0 0 rgba(0, 190, 130, 0);
+            }
+
+            50% {
+                transform: translateY(-2px) scale(1.05);
+                box-shadow: 0 0 14px rgba(0, 190, 130, 0.28);
+            }
+
+            100% {
+                transform: translateY(0) scale(1);
+                box-shadow: 0 0 0 rgba(0, 190, 130, 0);
+            }
+        }
+
+        @keyframes rank-down-pop {
+            0% {
+                transform: translateY(-2px) scale(0.95);
+                box-shadow: 0 0 0 rgba(255, 90, 20, 0);
+            }
+
+            50% {
+                transform: translateY(2px) scale(1.05);
+                box-shadow: 0 0 14px rgba(255, 90, 20, 0.28);
+            }
+
+            100% {
+                transform: translateY(0) scale(1);
+                box-shadow: 0 0 0 rgba(255, 90, 20, 0);
+            }
         }
 
         /* Rows not found in the imported PDF */
@@ -1234,6 +1499,7 @@
                     </span>
                     <span class="btnTooltip" aria-hidden="true">Entrar no modo telão</span>
                 </button>
+                <button class="btn" id="btnHideSales">Ocultar vendas</button>
                 <button class="btn primary mono" id="btnReset">RESETAR DADOS</button>
             </div>
         </div>
@@ -1477,6 +1743,20 @@
         </div>
     </div>
 
+    <!-- Leaders modal -->
+    <div class="modalOverlay" id="leadersModal" aria-hidden="true">
+        <div class="modalCard" role="dialog" aria-modal="true" aria-labelledby="leadersModalTitle">
+            <div class="modalHeader">
+                <div>
+                    <div class="modalTitle" id="leadersModalTitle">Ranking completo</div>
+                    <div class="modalSubtitle" id="leadersModalSubtitle">—</div>
+                </div>
+                <button class="modalClose" id="leadersModalClose" aria-label="Fechar">×</button>
+            </div>
+            <div class="modalBody" id="leadersModalBody"></div>
+        </div>
+    </div>
+
     <script>
         // ========= Logger cedo =========
         const logBox = document.getElementById("logBox");
@@ -1563,7 +1843,7 @@
                 ["51", 170000], ["167", 150000], ["38", 250000], ["233", 150000], ["314", 120000],
                 ["232", 60000], ["186", 110000], ["209", 110000], ["101", 90000], ["198", 150000],
                 ["227", 80000], ["217", 60000], ["223", 60000], ["219", 60000], ["224", 60000],
-                ["218", 60000], ["211", 60000], ["298", 120000], ["62", 60000]
+                ["218", 60000], ["211", 60000], ["298", 120000], ["62", 100000]
             ]);
 
             const NOME_PADRAO = new Map([
@@ -1624,7 +1904,9 @@
                 source: "base",
                 rows: baseRows(),
                 lastUpdated: null,
-                telao: false
+                telao: false,
+                prevRanks: null,
+                hideSales: false
             };
 
             let state;
@@ -1657,6 +1939,7 @@
 
             const btnReset = el("btnReset");
             const btnTelao = el("btnTelao");
+            const btnHideSales = el("btnHideSales");
 
             const btnStopAlarm = el("btnStopAlarm");
             const btnClearLog = el("btnClearLog");
@@ -1683,6 +1966,12 @@
             const nameFilterInput = el("nameFilter");
             const nameFilterClear = el("nameFilterClear");
 
+            const leadersModal = el("leadersModal");
+            const leadersModalTitle = el("leadersModalTitle");
+            const leadersModalSubtitle = el("leadersModalSubtitle");
+            const leadersModalBody = el("leadersModalBody");
+            const leadersModalClose = el("leadersModalClose");
+
             const metaModePill = el("metaModePill");
 
             const countdownOverlay = el("countdownOverlay");
@@ -1695,6 +1984,53 @@
             const clamp = (n, a, b) => Math.max(a, Math.min(b, n));
             const esc = s => String(s ?? "").replace(/[&<>"']/g, m => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[m]));
             const pctOver = (sales, meta) => (meta > 0 ? (sales / meta) * 100 : 0);
+
+            function computeRankMap(rows) {
+                const sorted = [...(rows || [])].sort((a, b) => (b.sales || 0) - (a.sales || 0));
+                const map = {};
+                sorted.forEach((r, idx) => {
+                    if (r && r.rca != null) map[String(r.rca)] = idx + 1;
+                });
+                return map;
+            }
+
+            let lastTotalSales = null;
+            let kpiAnimFrame = null;
+            const lastTop1ByCard = { volume: null, pct: null, posit: null, mix: null };
+
+            function animateSoldKpi(target) {
+                if (lastTotalSales === null || !Number.isFinite(lastTotalSales)) {
+                    soldKpi.textContent = brl(target);
+                    lastTotalSales = target;
+                    return;
+                }
+                if (kpiAnimFrame) cancelAnimationFrame(kpiAnimFrame);
+
+                const start = lastTotalSales;
+                const diff = target - start;
+                const duration = 650;
+                const startTs = performance.now();
+
+                function step(ts) {
+                    const t = Math.min(1, (ts - startTs) / duration);
+                    const val = start + diff * (t < 0.5 ? 2 * t * t : -1 + (4 - 2 * t) * t);
+                    soldKpi.textContent = brl(val);
+                    if (t < 1) {
+                        kpiAnimFrame = requestAnimationFrame(step);
+                    } else {
+                        lastTotalSales = target;
+                        soldKpi.textContent = brl(target);
+                    }
+                }
+                kpiAnimFrame = requestAnimationFrame(step);
+            }
+
+            function triggerPulse(el) {
+                if (!el) return;
+                el.classList.remove("pulse");
+                void el.offsetWidth; // force reflow to restart animation
+                el.classList.add("pulse");
+            }
 
             if (nameFilterInput) {
                 nameFilterInput.value = state.nameFilter || "";
@@ -1993,6 +2329,10 @@
                     btnTelao.setAttribute('aria-pressed', !!state.telao ? 'true' : 'false');
                     btnTelao.title = state.telao ? 'Sair do modo telão' : 'Entrar no modo telão';
                 }
+                if (btnHideSales) {
+                    btnHideSales.textContent = state.hideSales ? "Mostrar vendas" : "Ocultar vendas";
+                }
+                document.body.classList.toggle("hideSales", !!state.hideSales);
                 const tt = document.querySelector('#btnTelao .btnTooltip');
                 if (tt) tt.textContent = state.telao ? 'Sair do modo telão' : 'Entrar no modo telão';
 
@@ -2043,9 +2383,15 @@
                 const total = (state.rows || []).reduce((a, r) => a + (Number(r.sales) || 0), 0);
                 const metaMom = Number(state.goalValue) || 0;
                 const p = metaMom > 0 ? (total / metaMom) * 100 : 0;
-                soldKpi.textContent = brl(total);
+                if (state.hideSales) {
+                    soldKpi.innerHTML = "<span class=\"salesReveal\">••••</span>";
+                } else {
+                    animateSoldKpi(total);
+                    soldKpi.classList.add("salesReveal");
+                }
                 pctKpi.textContent = metaMom > 0 ? `${p.toFixed(1)}% da meta (${brl(metaMom)})` : "Defina a meta do momento";
                 bar.style.width = `${clamp(p, 0, 100)}%`;
+                soldKpi.classList.toggle("glow", p >= 100);
 
                 sourceKpi.textContent = state.source === "pdf" ? "📄 pdf" : state.source === "manual" ? "📄 manual" : "📄 base";
                 sourceKpi.className = `pill mono ${state.source === "pdf" ? "ok" : "warn"}`;
@@ -2058,6 +2404,11 @@
                 let countMet = 0;
                 let countNotFoundOrZero = 0;
 
+                const currentRankMap = {};
+                sorted.forEach((r, idx) => {
+                    if (r && r.rca != null) currentRankMap[String(r.rca)] = idx + 1;
+                });
+
                 const filteredRows = sorted.filter(r => {
                     if (!filterText) return true;
                     const hay = (`${r.rca || ''} ${r.name || ''}`).toLowerCase();
@@ -2069,16 +2420,31 @@
                     const reachedMeta = (Number(r.sales) || 0) >= (Number(r.meta) || 0) && (Number(r.meta) || 0) > 0;
                     const notFound = (state.source === "pdf" && r.found === false);
 
+                    let rankHtml = '';
+                    if (state.source === "pdf" && state.prevRanks && r.rca != null) {
+                        const rcaKey = String(r.rca);
+                        const prev = state.prevRanks[rcaKey];
+                        const curr = currentRankMap[rcaKey];
+                        if (prev && curr) {
+                            const delta = prev - curr; // positive = subir posição
+                            if (delta > 0) rankHtml = `<span class="rankDelta up">↑${delta}</span>`;
+                            else if (delta < 0) rankHtml = `<span class="rankDelta down">↓${Math.abs(delta)}</span>`;
+                            else rankHtml = `<span class="rankDelta">=</span>`;
+                        }
+                    }
+
                     if (reachedMeta) countMet++;
                     if (notFound || (Number(r.sales) || 0) === 0) countNotFoundOrZero++;
 
                     const rowClass = notFound ? 'not-found' : (reachedMeta ? 'met' : '');
                     const checkHtml = reachedMeta && !notFound ? `<span class="metIcon">✅</span>&nbsp;` : '';
 
+                    const salesText = state.hideSales ? "••••" : brl(r.sales);
+                    const salesHtml = `<span class=\"salesReveal\">${salesText}</span>`;
                     return `<tr class="${rowClass}">
-              <td>${esc(r.rca)}</td>
-              <td>${checkHtml}${esc(r.name)}</td>
-              <td>${brl(r.sales)}</td>
+          <td>${esc(r.rca)}</td>
+          <td>${rankHtml}${checkHtml}${esc(r.name)}</td>
+          <td>${salesHtml}</td>
               <td>${pm.toFixed(1)}%</td>
               <td>${Number(r.cliPosit || 0)}</td>
               <td>${Number(r.mix || 0)}</td>
@@ -2091,6 +2457,7 @@
                 if (summaryMetEl) summaryMetEl.textContent = `✅ Meta Batida: ${countMet}`;
                 if (summaryNotFoundEl) summaryNotFoundEl.textContent = `❌ Não encontrados/sem venda: ${countNotFoundOrZero}`;
 
+                triggerPulse(tbody);
                 renderLeaders(filteredRows);
 
                 integritySub.textContent = pdfOk
@@ -2098,7 +2465,7 @@
                     : "PDF.js OFF. Você pode usar manual. Countdown 10s + alarme suave no fim.";
             }
 
-            function leaderCard(title, icon, rows, metricLabel, metricFn) {
+            function leaderCard(title, icon, rows, metricLabel, metricFn, cardClass, metricKey) {
                 const r1 = rows[0] || null;
                 const r2 = rows[1] || null;
                 const r3 = rows[2] || null;
@@ -2125,22 +2492,26 @@
                 </svg>
               </span>` : '';
 
+                    const metricValue = metricFn(r);
+                    const metricHtml = (typeof metricValue === "string" && metricValue.includes("<")) ? metricValue : esc(metricValue);
+
                     return `<div class="${cls}">
-              <div class="rankBadge">${rank}</div>
-              <div class="podName">${trophyHtml}${esc(r.name)}</div>
-              <div class="podSub"><span class="mono">RCA ${esc(r.rca)}</span></div>
-              <div class="podMetric"><span>${esc(metricFn(r))}</span><small>${esc(metricLabel)}</small></div>
-            </div>`;
+                            <div class="rankBadge">${rank}</div>
+                            <div class="podName">${trophyHtml}${esc(r.name)}</div>
+                            <div class="podSub"><span class="mono">RCA ${esc(r.rca)}</span></div>
+                            <div class="podMetric"><span>${metricHtml}</span><small>${esc(metricLabel)}</small></div>
+                        </div>`;
                 }
 
                 return `
-          <div class="leaderCard">
+          <div class="leaderCard ${cardClass || ""}">
             <div class="leaderCardHead">
               <div class="tag">
                 <span class="icon">${icon}</span>
                 <span>${title}</span>
               </div>
               <span class="smallPill">TOP 4</span>
+                            <button class="leaderMoreBtn" data-metric="${metricKey}">Ver ranking</button>
             </div>
             <div class="podium">
               ${podHTML(2, r2, "")}
@@ -2152,10 +2523,10 @@
                 <div class="rankBadge">4</div>
                 <div class="podName">${r4 ? esc(r4.name) : '<span class="muted">—</span>'}</div>
                 <div class="podSub">${r4 ? `<span class="mono">RCA ${esc(r4.rca)}</span>` : '<span class="mono">RCA —</span>'}</div>
-                <div class="podMetric">
-                  <span>${r4 ? esc(metricFn(r4)) : '<span class="muted">—</span>'}</span>
-                  <small>${esc(metricLabel)}</small>
-                </div>
+                                <div class="podMetric">
+                                    <span>${r4 ? ((typeof metricFn(r4) === "string" && metricFn(r4).includes("<")) ? metricFn(r4) : esc(metricFn(r4))) : '<span class="muted">—</span>'}</span>
+                                    <small>${esc(metricLabel)}</small>
+                                </div>
               </div>
             </div>
           </div>
@@ -2168,18 +2539,118 @@
                     return [...sourceRows].sort((a, b) => fn(b) - fn(a)).slice(0, 4);
                 }
 
+                const icons = {
+                    volume: `<svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M4 12h4l2 6 4-12 2 6h4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>`,
+                    pct: `<svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M6 18L18 6" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/><circle cx="7.5" cy="7.5" r="2.5" stroke="currentColor" stroke-width="1.6"/><circle cx="16.5" cy="16.5" r="2.5" stroke="currentColor" stroke-width="1.6"/></svg>`,
+                    posit: `<svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M12 6v12" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/><path d="M6 12h12" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/><circle cx="12" cy="12" r="8" stroke="currentColor" stroke-width="1.6"/></svg>`,
+                    mix: `<svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M4 8h16" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/><path d="M4 16h10" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/><circle cx="18" cy="16" r="2" stroke="currentColor" stroke-width="1.6"/></svg>`
+                };
+
                 const volume = top4ByFn(r => Number(r.sales) || 0);
                 const pct = top4ByFn(r => pctOver(r.sales, r.meta || 0));
                 const pos = top4ByFn(r => Number(r.cliPosit) || 0);
                 const mix = top4ByFn(r => Number(r.mix) || 0);
 
+                const volumeTop = volume[0] ? `${volume[0].rca}-${volume[0].name}` : null;
+                const pctTop = pct[0] ? `${pct[0].rca}-${pct[0].name}` : null;
+                const positTop = pos[0] ? `${pos[0].rca}-${pos[0].name}` : null;
+                const mixTop = mix[0] ? `${mix[0].rca}-${mix[0].name}` : null;
+
+                const volumeChanged = lastTop1ByCard.volume && lastTop1ByCard.volume !== volumeTop;
+                const pctChanged = lastTop1ByCard.pct && lastTop1ByCard.pct !== pctTop;
+                const positChanged = lastTop1ByCard.posit && lastTop1ByCard.posit !== positTop;
+                const mixChanged = lastTop1ByCard.mix && lastTop1ByCard.mix !== mixTop;
+
+                lastTop1ByCard.volume = volumeTop;
+                lastTop1ByCard.pct = pctTop;
+                lastTop1ByCard.posit = positTop;
+                lastTop1ByCard.mix = mixTop;
+
                 leadersGrid.innerHTML = [
-                    leaderCard("Maior volume de vendas", "💥", volume, "Vl venda", r => brl(r.sales)),
-                    leaderCard("Maior % sobre meta", "🎯", pct, "% meta", r => `${pctOver(r.sales, r.meta || 0).toFixed(1)}%`),
-                    leaderCard("Maior positivação", "🪖", pos, "Cli.posit", r => String(Number(r.cliPosit || 0))),
-                    leaderCard("Maior mix", "🧨", mix, "Mix", r => String(Number(r.mix || 0))),
+                    leaderCard("Maior volume de vendas", icons.volume, volume, "Vl venda", r => `<span class=\"salesReveal\">${state.hideSales ? "••••" : brl(r.sales)}</span>`, volumeChanged ? "top1Changed" : "", "volume"),
+                    leaderCard("Maior % sobre meta", icons.pct, pct, "% meta", r => `${pctOver(r.sales, r.meta || 0).toFixed(1)}%`, pctChanged ? "top1Changed" : "", "pct"),
+                    leaderCard("Maior positivação", icons.posit, pos, "Cli.posit", r => String(Number(r.cliPosit || 0)), positChanged ? "top1Changed" : "", "posit"),
+                    leaderCard("Maior mix", icons.mix, mix, "Mix", r => String(Number(r.mix || 0)), mixChanged ? "top1Changed" : "", "mix"),
                 ].join("");
+
+                triggerPulse(leadersGrid);
             }
+
+            const LEADER_METRICS = {
+                volume: {
+                    title: "Maior volume de vendas",
+                    label: "Vl venda",
+                    sortFn: r => Number(r.sales) || 0,
+                    valueFn: r => brl(r.sales)
+                },
+                pct: {
+                    title: "Maior % sobre meta",
+                    label: "% meta",
+                    sortFn: r => pctOver(r.sales, r.meta || 0),
+                    valueFn: r => `${pctOver(r.sales, r.meta || 0).toFixed(1)}%`
+                },
+                posit: {
+                    title: "Maior positivação",
+                    label: "Cli.posit",
+                    sortFn: r => Number(r.cliPosit) || 0,
+                    valueFn: r => String(Number(r.cliPosit || 0))
+                },
+                mix: {
+                    title: "Maior mix",
+                    label: "Mix",
+                    sortFn: r => Number(r.mix) || 0,
+                    valueFn: r => String(Number(r.mix || 0))
+                }
+            };
+
+            function openLeadersModal(metricKey) {
+                const metric = LEADER_METRICS[metricKey];
+                if (!metric || !leadersModal || !leadersModalBody) return;
+
+                leadersModalTitle.textContent = metric.title;
+                leadersModalSubtitle.textContent = `Ranking completo — ${metric.label}`;
+
+                const rows = [...(state.rows || [])].sort((a, b) => metric.sortFn(b) - metric.sortFn(a));
+                leadersModalBody.innerHTML = `
+                  <div class="modalList">
+                    ${rows.map((r, i) => `
+                      <div class="modalRow">
+                        <div class="pos">#${i + 1}</div>
+                        <div class="name">${esc(r.name || '—')} <span class="mono" style="opacity:.6">RCA ${esc(r.rca || '—')}</span></div>
+                        <div class="metric"><span class="salesReveal">${metricKey === 'volume' && state.hideSales ? '••••' : esc(metric.valueFn(r))}</span></div>
+                      </div>
+                    `).join("")}
+                  </div>
+                `;
+
+                leadersModal.classList.add("show");
+                leadersModal.setAttribute("aria-hidden", "false");
+            }
+
+            function closeLeadersModal() {
+                if (!leadersModal) return;
+                leadersModal.classList.remove("show");
+                leadersModal.setAttribute("aria-hidden", "true");
+            }
+
+            if (leadersGrid) {
+                leadersGrid.addEventListener("click", (e) => {
+                    const btn = e.target.closest(".leaderMoreBtn");
+                    if (!btn) return;
+                    const metricKey = btn.dataset.metric;
+                    openLeadersModal(metricKey);
+                });
+            }
+
+            if (leadersModalClose) leadersModalClose.addEventListener("click", closeLeadersModal);
+            if (leadersModal) {
+                leadersModal.addEventListener("click", (e) => {
+                    if (e.target === leadersModal) closeLeadersModal();
+                });
+            }
+            document.addEventListener("keydown", (e) => {
+                if (e.key === "Escape") closeLeadersModal();
+            });
 
             // =======================
             // Timer loop (meta + countdown + alarme) — AJUSTADO
@@ -2277,6 +2748,7 @@
             soldNow.addEventListener("input", () => {
                 state.soldManual = parseNum(soldNow.value);
                 state.source = "manual";
+                state.prevRanks = null;
                 saveState();
                 render();
             });
@@ -2285,6 +2757,7 @@
                 const parsed = parseManual(rawData.value);
                 state.rows = mergeIntoBase(parsed);
                 state.source = "manual";
+                state.prevRanks = null;
                 state.lastUpdated = new Date().toISOString();
                 saveState();
                 render();
@@ -2306,6 +2779,19 @@
                 saveState();
                 render();
             });
+
+            if (btnHideSales) {
+                btnHideSales.addEventListener("click", () => {
+                    const wasHidden = state.hideSales;
+                    state.hideSales = !state.hideSales;
+                    saveState();
+                    render();
+                    if (wasHidden && !state.hideSales) {
+                        document.body.classList.add("revealSales");
+                        setTimeout(() => document.body.classList.remove("revealSales"), 700);
+                    }
+                });
+            }
 
             btnStopAlarm.addEventListener("click", () => {
                 stopAlarm();
@@ -2365,7 +2851,10 @@
                 try {
                     log(`Lendo PDF: ${file.name}`);
                     const buf = await file.arrayBuffer();
-                    const pdf = await window.pdfjsLib.getDocument({ data: buf }).promise;
+                    // CSP-safe config
+                    window.pdfjsLib.disableEval = true;
+                    window.pdfjsLib.disableFontFace = true;
+                    const pdf = await window.pdfjsLib.getDocument({ data: buf, disableEval: true, disableFontFace: true }).promise;
 
                     let fullText = "";
                     for (let p = 1; p <= pdf.numPages; p++) {
@@ -2381,6 +2870,7 @@
                     const extracted = parseWinthor315(fullText);
 
                     if (extracted.length) {
+                        state.prevRanks = computeRankMap(state.rows);
                         state.rows = mergeIntoBase(extracted);
                         state.source = "pdf";
                         state.lastUpdated = new Date().toISOString();
