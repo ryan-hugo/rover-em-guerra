@@ -297,6 +297,13 @@
             transform: translateY(-2px) scale(1.02);
         }
 
+        /* Individual leader hide/show toggle buttons */
+        .btnHideLeader {
+            font-size: 11px !important;
+            padding: 7px 10px !important;
+            letter-spacing: .5px;
+        }
+
         /* subtle icon spacing when used */
         .btn .icon {
             margin-right: 8px;
@@ -653,7 +660,15 @@
             display: inline-block;
         }
 
+        .leaderReveal {
+            display: inline-block;
+        }
+
         .revealSales .salesReveal {
+            animation: sales-reveal 650ms ease;
+        }
+
+        .revealLeaders .leaderReveal {
             animation: sales-reveal 650ms ease;
         }
 
@@ -1500,6 +1515,10 @@
                     <span class="btnTooltip" aria-hidden="true">Entrar no modo telão</span>
                 </button>
                 <button class="btn" id="btnHideSales">Ocultar vendas</button>
+                <button class="btn btnHideLeader" data-leader="volume">🔒 Volume</button>
+                <button class="btn btnHideLeader" data-leader="pct">🔒 % Meta</button>
+                <button class="btn btnHideLeader" data-leader="posit">🔒 Positivação</button>
+                <button class="btn btnHideLeader" data-leader="mix">🔒 Mix</button>
                 <button class="btn primary mono" id="btnReset">RESETAR DADOS</button>
             </div>
         </div>
@@ -1906,7 +1925,8 @@
                 lastUpdated: null,
                 telao: false,
                 prevRanks: null,
-                hideSales: false
+                hideSales: false,
+                hideLeader: { volume: false, pct: false, posit: false, mix: false }
             };
 
             let state;
@@ -1940,6 +1960,7 @@
             const btnReset = el("btnReset");
             const btnTelao = el("btnTelao");
             const btnHideSales = el("btnHideSales");
+            const btnHideLeaderAll = document.querySelectorAll(".btnHideLeader");
 
             const btnStopAlarm = el("btnStopAlarm");
             const btnClearLog = el("btnClearLog");
@@ -2333,6 +2354,13 @@
                     btnHideSales.textContent = state.hideSales ? "Mostrar vendas" : "Ocultar vendas";
                 }
                 document.body.classList.toggle("hideSales", !!state.hideSales);
+                const hl = state.hideLeader || {};
+                btnHideLeaderAll.forEach(btn => {
+                    const key = btn.dataset.leader;
+                    const hidden = !!hl[key];
+                    const labels = { volume: "Volume", pct: "% Meta", posit: "Positivação", mix: "Mix" };
+                    btn.textContent = hidden ? `👁️ ${labels[key]}` : `🔒 ${labels[key]}`;
+                });
                 const tt = document.querySelector('#btnTelao .btnTooltip');
                 if (tt) tt.textContent = state.telao ? 'Sair do modo telão' : 'Entrar no modo telão';
 
@@ -2470,6 +2498,7 @@
                 const r2 = rows[1] || null;
                 const r3 = rows[2] || null;
                 const r4 = rows[3] || null;
+                const isCardHidden = !!(state.hideLeader && state.hideLeader[metricKey]);
 
                 function podHTML(rank, r, extraCls) {
                     const cls = `pod ${extraCls || ""}`.trim();
@@ -2495,11 +2524,15 @@
                     const metricValue = metricFn(r);
                     const metricHtml = (typeof metricValue === "string" && metricValue.includes("<")) ? metricValue : esc(metricValue);
 
+                    const displayName = isCardHidden ? "••••••" : esc(r.name);
+                    const displayRca = isCardHidden ? "••••" : esc(r.rca);
+                    const displayMetric = isCardHidden ? "••••" : metricHtml;
+
                     return `<div class="${cls}">
                             <div class="rankBadge">${rank}</div>
-                            <div class="podName">${trophyHtml}${esc(r.name)}</div>
-                            <div class="podSub"><span class="mono">RCA ${esc(r.rca)}</span></div>
-                            <div class="podMetric"><span>${metricHtml}</span><small>${esc(metricLabel)}</small></div>
+                            <div class="podName"><span class="leaderReveal">${trophyHtml}${displayName}</span></div>
+                            <div class="podSub"><span class="mono leaderReveal">RCA ${displayRca}</span></div>
+                            <div class="podMetric"><span class="leaderReveal">${displayMetric}</span><small>${esc(metricLabel)}</small></div>
                         </div>`;
                 }
 
@@ -2521,10 +2554,10 @@
             <div style="padding:0 14px 14px">
               <div class="pod" style="min-height:auto">
                 <div class="rankBadge">4</div>
-                <div class="podName">${r4 ? esc(r4.name) : '<span class="muted">—</span>'}</div>
-                <div class="podSub">${r4 ? `<span class="mono">RCA ${esc(r4.rca)}</span>` : '<span class="mono">RCA —</span>'}</div>
+                <div class="podName"><span class="leaderReveal">${r4 ? (isCardHidden ? '••••••' : esc(r4.name)) : '<span class="muted">—</span>'}</span></div>
+                <div class="podSub"><span class="mono leaderReveal">${r4 ? `RCA ${isCardHidden ? '••••' : esc(r4.rca)}` : 'RCA —'}</span></div>
                                 <div class="podMetric">
-                                    <span>${r4 ? ((typeof metricFn(r4) === "string" && metricFn(r4).includes("<")) ? metricFn(r4) : esc(metricFn(r4))) : '<span class="muted">—</span>'}</span>
+                                    <span class="leaderReveal">${r4 ? (isCardHidden ? '••••' : ((typeof metricFn(r4) === "string" && metricFn(r4).includes("<")) ? metricFn(r4) : esc(metricFn(r4)))) : '<span class="muted">—</span>'}</span>
                                     <small>${esc(metricLabel)}</small>
                                 </div>
               </div>
@@ -2611,13 +2644,14 @@
                 leadersModalSubtitle.textContent = `Ranking completo — ${metric.label}`;
 
                 const rows = [...(state.rows || [])].sort((a, b) => metric.sortFn(b) - metric.sortFn(a));
+                const hl = !!(state.hideLeader && state.hideLeader[metricKey]);
                 leadersModalBody.innerHTML = `
                   <div class="modalList">
                     ${rows.map((r, i) => `
                       <div class="modalRow">
                         <div class="pos">#${i + 1}</div>
-                        <div class="name">${esc(r.name || '—')} <span class="mono" style="opacity:.6">RCA ${esc(r.rca || '—')}</span></div>
-                        <div class="metric"><span class="salesReveal">${metricKey === 'volume' && state.hideSales ? '••••' : esc(metric.valueFn(r))}</span></div>
+                        <div class="name"><span class="leaderReveal">${hl ? '••••••' : esc(r.name || '—')}</span> <span class="mono leaderReveal" style="opacity:.6">RCA ${hl ? '••••' : esc(r.rca || '—')}</span></div>
+                        <div class="metric"><span class="leaderReveal salesReveal">${hl ? '••••' : (metricKey === 'volume' && state.hideSales ? '••••' : esc(metric.valueFn(r)))}</span></div>
                       </div>
                     `).join("")}
                   </div>
@@ -2792,6 +2826,21 @@
                     }
                 });
             }
+
+            btnHideLeaderAll.forEach(btn => {
+                btn.addEventListener("click", () => {
+                    const key = btn.dataset.leader;
+                    if (!state.hideLeader) state.hideLeader = {};
+                    const wasHidden = !!state.hideLeader[key];
+                    state.hideLeader[key] = !wasHidden;
+                    saveState();
+                    render();
+                    if (wasHidden && !state.hideLeader[key]) {
+                        document.body.classList.add("revealLeaders");
+                        setTimeout(() => document.body.classList.remove("revealLeaders"), 700);
+                    }
+                });
+            });
 
             btnStopAlarm.addEventListener("click", () => {
                 stopAlarm();
